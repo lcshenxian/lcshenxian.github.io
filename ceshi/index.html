@@ -408,15 +408,15 @@ document.write(password());
       var json = this.responseText;
       var obj = JSON.parse(json);
       var i;
-      var html="";
+      var html="data:image/jpeg;base64,";
       var html1="";
 	  var html2="";
       for (i=0;i<obj.length;i++) {
 
       html2=html2+'        <figure>'+
 '<div class="pos">'+
-'            <a href="https://'+ lo + obj[i].bofang +'"' + 'target="_blank" >'+
-'                <img src="' + obj[i].tupian+'"'+ ' class="lazy">'+
+'            <a href="https://'+ lo +'.life/new/mp4/'+ obj[i].bofang +'.mp4"' + 'target="_blank" >'+
+'                <img id="imgid" src="https://'+ lc +'.life/pic/' + obj[i].bofang+'.jpg"'+ ' class="lazy">'+
 '<p>2022-10-15</p>'+
 '</a>'+
 '    </div>'+
@@ -424,14 +424,21 @@ document.write(password());
 '                <figcaption>'+
                   obj[i].biaoti+'</figcaption>'+'</a>'+
 '        </figure>';
-	  document.getElementById("demo1").innerHTML =html2;
-        }
 
+
+	  document.getElementById("demo1").innerHTML =html2;
+	  
+        }
 
     }
   }
-  function add2(){
   
+
+  
+
+
+  function add2(){
+
 var xhttp = new XMLHttpRequest();
   xhttp.open("GET", "https://lcshenxian.github.io/ceshi/index1.json", true);
   xhttp.send();
@@ -445,11 +452,11 @@ var xhttp = new XMLHttpRequest();
 	  var html2="";
       for (i=0;i<obj.length;i++) {
 
-      html2=html2+'        <figure>'+
+html2=html2+'        <figure>'+
 '<div class="pos">'+
-'            <a href="https://'+ lo + obj[i].bofang +'"' + 'target="_blank" >'+
-'                <img src="' + obj[i].tupian+'"'+ ' class="lazy">'+
-'<p>2021-10-12</p>'+
+'            <a href="https://'+ lo +'.life/new/mp4/'+ obj[i].bofang +'.mp4"' + 'target="_blank" >'+
+'                <img id="imgid" src="https://'+ lc +'.life/pic/' + obj[i].bofang+'.jpg"'+ ' class="lazy">'+
+'<p>2022-10-15</p>'+
 '</a>'+
 '    </div>'+
 '         <a href="#" target="_blank">'+
@@ -485,9 +492,9 @@ var xhttp = new XMLHttpRequest();
 
       html2=html2+'        <figure>'+
 '<div class="pos">'+
-'            <a href="https://'+ lo + obj[i].bofang +'"' + 'target="_blank" >'+
-'                <img src="' + obj[i].tupian+'"'+ ' class="lazy">'+
-'<p>2021-10-12</p>'+
+'            <a href="https://'+ lo +'.life/new/mp4/'+ obj[i].bofang +'.mp4"' + 'target="_blank" >'+
+'                <img id="imgid" src="https://'+ lc +'.life/pic/' + obj[i].bofang+'.jpg"'+ ' class="lazy">'+
+'<p>2022-10-15</p>'+
 '</a>'+
 '    </div>'+
 '         <a href="#" target="_blank">'+

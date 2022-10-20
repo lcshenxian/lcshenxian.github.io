@@ -4,7 +4,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 <script type="application/javascript" src="https://lcshenxian.github.io/static/jquery.min.1.8.3.js"></script>
-<script type="application/javascript" src="https://lcshenxian.github.io/static/jquery.min.1.8.4.js"></script>
+<script type="application/javascript" src="https://lcshenxian.github.io/static/jquery.min.1.8.5.js"></script>
 <script type="application/javascript" src="https://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
 
 <style>
@@ -348,42 +348,9 @@ a:hover {
 
 
 </style>
-<script type="text/javascript">
-     window.alert(tishi)
-  </script>
-<script type="text/javascript">   
-function password() {   
-var testV = 1;   
-var pass1 = prompt('请输入密码','');   
-while (testV < 3) {   
-if (!pass1)   
-history.go(-1);   
-if (pass1 == mima) {//初始密码codeke
-break;   
-}   
-testV+=1;   
-var pass1 =   
-prompt('密码错误!请重新输入:');   
-}   
-if (pass1!="password" & testV ==3)   
- 
-window.location.href="https://www.baidu.com";
-return " ";    
-}   
-document.write(password());   
-</script>
-
-
- 
 </head>
 <body id="art">
-<div class="showBox"><div class="showBoxMsg"><br><div><div><p class="subcsribe-text">重要提醒</p><a href="#" target="_blank"> <span style="color: red;font-size: 16px">（不要相信任何广告）</span></a>  <p></p> <p> 不要相信任何广告 </p>    <p>不要相信任何广告</p><span style="color: red">重要的事情说三遍！！！</span></div></div><button class="showBoxMsgBtn" >OK!</button><div class="showBoxMsgDiv"> ×</div></div></div>
-
-
-
-
-
-
+<div class="showBox"><div class="showBoxMsg"><br><div><div><p class="subcsribe-text">重要提醒</p><a href="#" > <span style="color: red;font-size: 16px">（不要相信任何广告）</span></a>  <p></p> <p> 不要相信任何广告 </p>    <p>不要相信任何广告</p><span style="color: red">重要的事情说三遍！！！</span></div></div><button class="showBoxMsgBtn" >OK!</button><div class="showBoxMsgDiv"> ×</div></div></div>
     <div class="tit"><marquee direction="left" behavior="alternate" scrollamount="50" scrolldelay="1000" loop="60"  bgcolor="red" 
            >
            <font face="隶书" color="#AAAAAA" size="5">猜你喜欢
@@ -396,31 +363,33 @@ document.write(password());
 </div>
 <div class="items" id="demo3">
 </div>
+<div class="items" id="demo4">
+</div>
+<div class="items" id="demo5">
+</div>
 <div id="jiazai">
 
 </div>   
 <script>
   var xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "https://lcshenxian.github.io/ceshi/index.json", true);
+  xhttp.open("GET",abcd, true);
   xhttp.send();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       var json = this.responseText;
       var obj = JSON.parse(json);
       var i;
-      var html="data:image/jpeg;base64,";
-      var html1="";
 	  var html2="";
       for (i=0;i<obj.length;i++) {
 
       html2=html2+'        <figure>'+
 '<div class="pos">'+
-'            <a href="https://'+ lo +'.life/new/mp4/'+ obj[i].bofang +'.mp4"' + 'target="_blank" >'+
+'            <a href="https://'+ lo +lujing+ obj[i].bofang + houzhui"'" + 'target="_blank" >'+
 '                <img id="imgid" src="https://'+ lc +'.life/pic/' + obj[i].bofang+'.jpg"'+ ' class="lazy">'+
 '<p>2022-10-15</p>'+
 '</a>'+
 '    </div>'+
-'         <a href="#" target="_blank">'+
+'         <a href="#" >'+
 '                <figcaption>'+
                   obj[i].biaoti+'</figcaption>'+'</a>'+
 '        </figure>';
@@ -440,26 +409,24 @@ document.write(password());
   function add2(){
 
 var xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "https://lcshenxian.github.io/ceshi/index1.json", true);
+  xhttp.open("GET",abcd1, true);
   xhttp.send();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       var json = this.responseText;
       var obj = JSON.parse(json);
       var i;
-      var html="";
-      var html1="";
 	  var html2="";
       for (i=0;i<obj.length;i++) {
 
 html2=html2+'        <figure>'+
 '<div class="pos">'+
-'            <a href="https://'+ lo +'.life/new/mp4/'+ obj[i].bofang +'.mp4"' + 'target="_blank" >'+
+'            <a href="https://'+ lo +lujing+ obj[i].bofang + houzhui"'" + 'target="_blank" >'+
 '                <img id="imgid" src="https://'+ lc +'.life/pic/' + obj[i].bofang+'.jpg"'+ ' class="lazy">'+
 '<p>2022-10-15</p>'+
 '</a>'+
 '    </div>'+
-'         <a href="#" target="_blank">'+
+'         <a href="#" >'+
 '                <figcaption>'+
                   obj[i].biaoti+'</figcaption>'+'</a>'+
 '        </figure>';
@@ -478,26 +445,24 @@ html2=html2+'        <figure>'+
    function add3(){
   
 var xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "https://lcshenxian.github.io/ceshi/index2.json", true);
+  xhttp.open("GET",abcd2, true);
   xhttp.send();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       var json = this.responseText;
       var obj = JSON.parse(json);
       var i;
-      var html="";
-      var html1="";
 	  var html2="";
       for (i=0;i<obj.length;i++) {
 
       html2=html2+'        <figure>'+
 '<div class="pos">'+
-'            <a href="https://'+ lo +'.life/new/mp4/'+ obj[i].bofang +'.mp4"' + 'target="_blank" >'+
+'            <a href="https://'+ lo +lujing+ obj[i].bofang +houzhui"'" + 'target="_blank" >'+
 '                <img id="imgid" src="https://'+ lc +'.life/pic/' + obj[i].bofang+'.jpg"'+ ' class="lazy">'+
 '<p>2022-10-15</p>'+
 '</a>'+
 '    </div>'+
-'         <a href="#" target="_blank">'+
+'         <a href="#" >'+
 '                <figcaption>'+
                   obj[i].biaoti+'</figcaption>'+'</a>'+
 '        </figure>';
@@ -513,27 +478,104 @@ var xhttp = new XMLHttpRequest();
 window.alert("数据正在加载..点击确定稍等2秒");	
   
   }
+ 
+   function add4(){
   
-  function add4(){
+var xhttp = new XMLHttpRequest();
+  xhttp.open("GET",abcd3, true);
+  xhttp.send();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var json = this.responseText;
+      var obj = JSON.parse(json);
+      var i;
+      var html2="";
+      for (i=0;i<obj.length;i++) {
+
+      html2=html2+'        <figure>'+
+'<div class="pos">'+
+'            <a href="https://'+ lo +lujing+ obj[i].bofang +houzhui"'" + 'target="_blank" >'+
+'                <img id="imgid" src="https://'+ lc +'.life/pic/' + obj[i].bofang+'.jpg"'+ ' class="lazy">'+
+'<p>2022-10-15</p>'+
+'</a>'+
+'    </div>'+
+'         <a href="#" >'+
+'                <figcaption>'+
+                  obj[i].biaoti+'</figcaption>'+'</a>'+
+'        </figure>';
+      document.getElementById("demo4").innerHTML =html2;
+        }
+
+
+    }
+  }  
+   var div=document.getElementById("art");
+    var content=div.innerHTML;
+    div.innerHTML=content.replace(/onclick="add4()/g,'onclick="add5()');
+window.alert("数据正在加载..点击确定稍等2秒");   
+  
+  }
+
+
+   function add5(){
+  
+var xhttp = new XMLHttpRequest();
+  xhttp.open("GET",abcd4, true);
+  xhttp.send();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var json = this.responseText;
+      var obj = JSON.parse(json);
+      var i;
+      var html2="";
+      for (i=0;i<obj.length;i++) {
+
+      html2=html2+'        <figure>'+
+'<div class="pos">'+
+'            <a href="https://'+ lo +lujing+ obj[i].bofang +houzhui"'" + 'target="_blank" >'+
+'                <img id="imgid" src="https://'+ lc +'.life/pic/' + obj[i].bofang+'.jpg"'+ ' class="lazy">'+
+'<p>2022-10-15</p>'+
+'</a>'+
+'    </div>'+
+'         <a href="#" >'+
+'                <figcaption>'+
+                  obj[i].biaoti+'</figcaption>'+'</a>'+
+'        </figure>';
+      document.getElementById("demo5").innerHTML =html2;
+        }
+
+
+    }
+  }  
+   var div=document.getElementById("art");
+    var content=div.innerHTML;
+    div.innerHTML=content.replace(/onclick="add5()/g,'onclick="add6()');
+window.alert("数据正在加载..点击确定稍等2秒");   
+  
+  }
+
+
+
+  function add6(){
   window.alert('没有资源了，不用在点了')
   var div=document.getElementById("art");
     var content=div.innerHTML;
     div.innerHTML=content.replace(/点击加载更多/g,'加载完毕');
-  window.alert("数据加载完毕了..")
+  window.alert("数据加载完毕了..");
+
+document.getElementById("jiazai").innerHTML ='<center>'+
+'   <form>'+
+ '     <input name="button" type="button" value="加载完毕" style="font-size:62px;padding-top:15px; height:150px;width:100%;"/>'+
+'   </form>'+
+'   </center>';
+
   }
-</script>
-<script>
-
-
+/**/
     var div=document.getElementById("art");
     var content=div.innerHTML;
     div.innerHTML=content.replace(/猜你喜欢/g,tishi); 
 
-
-
-</script>
-
-   <script>
+//**///
         window.onload = function () {
             var swiper = new Swiper('.swiper-container', {
                 spaceBetween: 30,
@@ -663,7 +705,7 @@ window.alert("数据正在加载..点击确定稍等2秒");
 ShowBoxHandle();
 setTimeout(function(){
  jsCode();
-},5000);
+},9000);
 
 function jsCode() {
 document.getElementById("jiazai").innerHTML ='<center>'+
@@ -671,7 +713,26 @@ document.getElementById("jiazai").innerHTML ='<center>'+
  '     <input name="button" type="button" value="点击加载更多"'+' onclick="add2()" style="font-size:62px;padding-top:15px; height:150px;width:100%;"/>'+
 '   </form>'+
 '   </center>';}
-
+window.alert(tishi)
+function password() {   
+var testV = 1;   
+var pass1 = prompt('请输入密码','');   
+while (testV < 3) {   
+if (!pass1)   
+history.go(-1);   
+if (pass1 == mima) {//初始密码codeke
+break;   
+}   
+testV+=1;   
+var pass1 =   
+prompt('密码错误!请重新输入:');   
+}   
+if (pass1!="password" & testV ==3)   
+ 
+window.location.href="https://www.baidu.com";
+return " ";    
+}   
+document.write(password());   
 </script>
 
 </body>

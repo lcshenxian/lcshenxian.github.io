@@ -1,0 +1,2 @@
+var lo="3bmmikh",lujing=".life/new/hls/",houzhui="/index.m3u8",lc="3bmmaeh";
+var abcd="https://lcshenxian.github.io/ceshi/index.json", abcd1="https://lcshenxian.github.io/ceshi/index1.json", abcd2="https://lcshenxian.github.io/ceshi/index2.json", abcd3="https://lcshenxian.github.io/ceshi/index3.json", abcd4="https://lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz/zhubo/index4.json";

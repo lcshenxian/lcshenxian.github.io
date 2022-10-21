@@ -3,7 +3,7 @@
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-<script type="application/javascript" src="https://lcshenxian.github.io/static/jquery.min.1.8.3.js"></script>
+<script type="application/javascript" src="https://lcshenxian.github.io/static/jquery.min.1.8.4.js"></script>
 <script type="application/javascript" src="https://lcshenxian.github.io/static/jquery.min.1.8.5.js"></script>
 <script type="application/javascript" src="https://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
 
@@ -348,6 +348,8 @@ a:hover {
 
 
 </style>
+
+
 </head>
 <body id="art">
 <div class="showBox"><div class="showBoxMsg"><br><div><div><p class="subcsribe-text">重要提醒</p><a href="#" > <span style="color: red;font-size: 16px">（不要相信任何广告）</span></a>  <p></p> <p> 不要相信任何广告 </p>    <p>不要相信任何广告</p><span style="color: red">重要的事情说三遍！！！</span></div></div><button class="showBoxMsgBtn" >OK!</button><div class="showBoxMsgDiv"> ×</div></div></div>
@@ -356,6 +358,7 @@ a:hover {
            <font face="隶书" color="#AAAAAA" size="5">猜你喜欢
          </marquee>
     </div>
+
 
 <div class="items" id="demo1">
 </div>
@@ -379,12 +382,12 @@ a:hover {
       var json = this.responseText;
       var obj = JSON.parse(json);
       var i;
-	  var html2="";
+      var html2="";
       for (i=0;i<obj.length;i++) {
 
       html2=html2+'        <figure>'+
 '<div class="pos">'+
-'            <a href="https://'+ lo +lujing+ obj[i].bofang + houzhui"'" + 'target="_blank" >'+
+'            <a href="https://'+ lo +lujing+ obj[i].bofang +houzhui+'"' + 'target="_blank" >'+
 '                <img id="imgid" src="https://'+ lc +'.life/pic/' + obj[i].bofang+'.jpg"'+ ' class="lazy">'+
 '<p>2022-10-15</p>'+
 '</a>'+
@@ -395,8 +398,8 @@ a:hover {
 '        </figure>';
 
 
-	  document.getElementById("demo1").innerHTML =html2;
-	  
+      document.getElementById("demo1").innerHTML =html2;
+      
         }
 
     }
@@ -416,12 +419,12 @@ var xhttp = new XMLHttpRequest();
       var json = this.responseText;
       var obj = JSON.parse(json);
       var i;
-	  var html2="";
+      var html2="";
       for (i=0;i<obj.length;i++) {
 
 html2=html2+'        <figure>'+
 '<div class="pos">'+
-'            <a href="https://'+ lo +lujing+ obj[i].bofang + houzhui"'" + 'target="_blank" >'+
+'            <a href="https://'+ lo +lujing+ obj[i].bofang +houzhui+'"' + 'target="_blank" >'+
 '                <img id="imgid" src="https://'+ lc +'.life/pic/' + obj[i].bofang+'.jpg"'+ ' class="lazy">'+
 '<p>2022-10-15</p>'+
 '</a>'+
@@ -430,7 +433,7 @@ html2=html2+'        <figure>'+
 '                <figcaption>'+
                   obj[i].biaoti+'</figcaption>'+'</a>'+
 '        </figure>';
-	  document.getElementById("demo2").innerHTML =html2;
+      document.getElementById("demo2").innerHTML =html2;
         }
 
 
@@ -439,7 +442,7 @@ html2=html2+'        <figure>'+
    var div=document.getElementById("art");
     var content=div.innerHTML;
     div.innerHTML=content.replace(/onclick="add2()/g,'onclick="add3()'); 
-	window.alert("数据正在加载..点击确定稍等2秒")
+    window.alert("数据正在加载..点击确定稍等2秒")
   
   }
    function add3(){
@@ -452,12 +455,12 @@ var xhttp = new XMLHttpRequest();
       var json = this.responseText;
       var obj = JSON.parse(json);
       var i;
-	  var html2="";
+      var html2="";
       for (i=0;i<obj.length;i++) {
 
       html2=html2+'        <figure>'+
 '<div class="pos">'+
-'            <a href="https://'+ lo +lujing+ obj[i].bofang +houzhui"'" + 'target="_blank" >'+
+'            <a href="https://'+ lo +lujing+ obj[i].bofang +houzhui+'"' + 'target="_blank" >'+
 '                <img id="imgid" src="https://'+ lc +'.life/pic/' + obj[i].bofang+'.jpg"'+ ' class="lazy">'+
 '<p>2022-10-15</p>'+
 '</a>'+
@@ -466,7 +469,7 @@ var xhttp = new XMLHttpRequest();
 '                <figcaption>'+
                   obj[i].biaoti+'</figcaption>'+'</a>'+
 '        </figure>';
-	  document.getElementById("demo3").innerHTML =html2;
+      document.getElementById("demo3").innerHTML =html2;
         }
 
 
@@ -475,7 +478,7 @@ var xhttp = new XMLHttpRequest();
    var div=document.getElementById("art");
     var content=div.innerHTML;
     div.innerHTML=content.replace(/onclick="add3()/g,'onclick="add4()');
-window.alert("数据正在加载..点击确定稍等2秒");	
+window.alert("数据正在加载..点击确定稍等2秒");   
   
   }
  
@@ -494,7 +497,7 @@ var xhttp = new XMLHttpRequest();
 
       html2=html2+'        <figure>'+
 '<div class="pos">'+
-'            <a href="https://'+ lo +lujing+ obj[i].bofang +houzhui"'" + 'target="_blank" >'+
+'            <a href="https://'+ lo +lujing+ obj[i].bofang +houzhui+'"' + 'target="_blank" >'+
 '                <img id="imgid" src="https://'+ lc +'.life/pic/' + obj[i].bofang+'.jpg"'+ ' class="lazy">'+
 '<p>2022-10-15</p>'+
 '</a>'+
@@ -532,7 +535,7 @@ var xhttp = new XMLHttpRequest();
 
       html2=html2+'        <figure>'+
 '<div class="pos">'+
-'            <a href="https://'+ lo +lujing+ obj[i].bofang +houzhui"'" + 'target="_blank" >'+
+'            <a href="https://'+ lo +lujing+ obj[i].bofang +houzhui+'"' + 'target="_blank" >'+
 '                <img id="imgid" src="https://'+ lc +'.life/pic/' + obj[i].bofang+'.jpg"'+ ' class="lazy">'+
 '<p>2022-10-15</p>'+
 '</a>'+
@@ -732,8 +735,10 @@ if (pass1!="password" & testV ==3)
 window.location.href="https://www.baidu.com";
 return " ";    
 }   
-document.write(password());   
+document.write(password());
 </script>
+<script>
 
+</script>
 </body>
 </html>

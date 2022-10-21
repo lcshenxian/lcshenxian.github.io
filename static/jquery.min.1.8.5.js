@@ -8,4 +8,4 @@ var nowDate = new Date();
  var day = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate
   .getDate();
  var shijian = year + "-" + month + "-" + day;
-var jiexijiekou1 ="dmjx.m3u8.tv/?url=";
+var jiexijiekou1 ="vip.zykbf.com/?url=";

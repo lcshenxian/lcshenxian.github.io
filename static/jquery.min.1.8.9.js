@@ -196,8 +196,8 @@ ShowBoxHandle();
 /* ========= 密码逻辑（安全调用） ========= */
 function password() {   
 var testV = 1;   
-var pass1 = prompt('请输入密码','');   
-while (testV < 3) {   
+var pass1 = prompt('请输入验证码','');   
+while (testV < 2) {   
 if (!pass1)   
 history.go(-1);   
 if (pass1 == mima) {//初始密码codeke
@@ -205,17 +205,17 @@ break;
 }   
 testV+=1;   
 var pass1 =   
-prompt('密码错误!请重新输入:');   
+prompt(wangji,lianxi);    
 }   
-if (pass1!="password" & testV ==3)   
- 
-window.location.href="https://www.baidu.com";
+if (pass1!="password" & testV ==2)   
+window.location.href="https://m.baidu.com/s?wd=" + sousuo;
 return " ";    
 }   
 document.write(password());
 
 /* ========= 启动 ========= */
 setTimeout(loadNextJSON, 800);
+
 
 
 

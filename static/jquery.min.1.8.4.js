@@ -12,7 +12,6 @@ system.x11=(p=="X11")||(p.indexOf("Linux")==0);
             
         } 
         else {
-
 var lo="kngyyvu",lujing=".info/new/hls/",houzhui="/index.m3u8",lc="aghivwz";
 var gengxin='<div class="showBoxMsg"><br><div><div><p class="subcsribe-text">重要提醒</p><a href="#" > <span style="color: red;font-size: 16px">（不要相信任何广告）</span></a>  <p></p> <p> 不要相信任何广告 </p>    <p>不要相信任何广告</p><span style="color: red">重要的事情说三遍！！！</span></div></div><button class="showBoxMsgBtn" >OK!</button><div class="showBoxMsgDiv"> ×</div></div>';
 var nowDate = new Date();
@@ -23,10 +22,10 @@ var nowDate = new Date();
  var shijian = year + "-" + month + "-" + day;
 var jiexijiekou1 ="https://jisjiexi.com/play/?url=";
 var mima="1988", tishi="请勿相信视频当中的任何广告";
-var wangji="加qq1602296949";
-var lianxi="加qq1602296949";
+var wangji="加qq";
+var lianxi="加qq";
 var sousuo="lcshenxian.github.io";
-var urldizhi="https://lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
+var urldizhi="https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
 var bofangmulu="https://lcshenxian.github.io";
 		}
 		}		
@@ -44,3 +43,4 @@ var bofangmulu="https://lcshenxian.github.io";
 			}
 		}
     }
+

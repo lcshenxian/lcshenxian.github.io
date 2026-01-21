@@ -101,9 +101,6 @@ document.getElementById("searchInput").oninput = function(){
   clearTimeout(t);
   t = setTimeout(doSearch, 300);
 };
-</script>
-
-<script>
 /* ===== 恢复密码功能（安全版） ===== */
 window.addEventListener("load", function () {
   setTimeout(function () {
@@ -123,4 +120,5 @@ function password() {
   }
   if (pass1 != "password" && testV == 2)
     window.location.href = "https://m.baidu.com/s?wd=" + lianxi;
+
 }

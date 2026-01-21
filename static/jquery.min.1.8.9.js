@@ -194,24 +194,34 @@ function ShowBoxHandle() {
 ShowBoxHandle();
 
 /* ========= 密码逻辑（安全调用） ========= */
-function password() {   
-var testV = 1;   
-var pass1 = prompt('请输入验证码','');   
-while (testV < 2) {   
-if (!pass1)   
-history.go(-1);   
-if (pass1 == mima) {//初始密码codeke
-break;   
-}   
-testV+=1;   
-var pass1 =   
-prompt(wangji,lianxi);    
-}   
-if (pass1!="password" & testV ==2)   
-window.location.href="https://m.baidu.com/s?wd=" + sousuo;
-return " ";    
-}   
+function password() {
+  var testV = 1;
+  var pass1 = prompt('请输入验证码', '');
+
+  if (!pass1) {
+    history.go(-1);
+    return;
+  }
+
+  while (testV < 2) {
+    if (pass1 === mima) {
+      return " ";
+    }
+    testV++;
+    pass1 = prompt(wangji, '');
+  }
+
+  // 两次都错，才跳转
+  if (pass1 !== mima && testV === 2) {
+    window.location.href = "https://m.baidu.com/s?wd=" + sousuo;
+  }
+
+  return " ";
+}
+
 document.write(password());
+
 /* ========= 启动 ========= */
 setTimeout(loadNextJSON, 800);
+
 

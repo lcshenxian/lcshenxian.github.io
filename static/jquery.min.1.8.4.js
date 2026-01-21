@@ -24,7 +24,7 @@ var jiexijiekou1 ="https://jisjiexi.com/play/?url=";
 var mima="1988", tishi="请勿相信视频当中的任何广告";
 var wangji="加qq";
 var lianxi="加qq";
-var sousuo="lcshenxian.github.io";
+var sousuo="日期";
 var urldizhi="https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
 var bofangmulu="https://lcshenxian.github.io";
 		}
@@ -43,4 +43,5 @@ var bofangmulu="https://lcshenxian.github.io";
 			}
 		}
     }
+
 

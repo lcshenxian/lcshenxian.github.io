@@ -25,6 +25,41 @@ var mima="1988", tishi="请勿相信视频当中的任何广告";
 var wangji="加qq";
 var lianxi="加qq";
 var sousuo="日期";
+function passwordCheck() {
+    var maxTry = 2;
+    var count = 0;
+
+    function ask() {
+        var pass = prompt('请输入验证码', '');
+        if (pass === null) return;
+
+        if (pass === mima) {
+            alert('验证成功');
+            return;
+        }
+
+        count++;
+        if (count < maxTry) {
+            alert('验证码错误，还有一次机会');
+            ask();
+        } else {
+            window.location.href =
+                "https://m.baidu.com/s?wd=" + encodeURIComponent(sousuo);
+        }
+    }
+    ask();
+}
+
+// ✅ 等关键变量准备好再执行（关键）
+(function waitForVars(){
+    if (typeof mima !== "undefined" && typeof sousuo !== "undefined") {
+        setTimeout(function(){
+            passwordCheck();
+        }, 300);
+    } else {
+        setTimeout(waitForVars, 100);
+    }
+})();			
 //var urldizhi="https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
 //var urldizhi1="https://lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";			
 !function(u,i){if(!u[i])return;var m=new Image;m.onload=function(){window.urldizhi=u[i]},m.onerror=function(){arguments.callee&&arguments.callee(u,++i)},m.src=u[i]+"/favicon.ico?_="+Date.now()}(["https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz","https://lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"],0);
@@ -46,6 +81,7 @@ var sousuo="日期";
 			}
 		}
     }
+
 
 
 

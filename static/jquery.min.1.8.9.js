@@ -194,7 +194,11 @@ function ShowBoxHandle() {
 }
 ShowBoxHandle();
 
-setTimeout(loadNextJSON, 800);
-
-
+(function waitPassword(){
+  if (window.__PWD_OK__) {
+    loadNextJSON();   // js2 真正启动点
+  } else {
+    setTimeout(waitPassword, 100);
+  }
+})();
 

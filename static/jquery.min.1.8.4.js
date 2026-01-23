@@ -25,9 +25,11 @@ var mima="1988", tishi="请勿相信视频当中的任何广告";
 var wangji="加qq";
 var lianxi="加qq";
 var sousuo="日期";
-var urldizhi="https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
-var urldizhi1="https://lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";			
-var bofangmulu="https://lcshenxian.github.io";
+//var urldizhi="https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
+//var urldizhi1="https://lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";			
+!function(u,i){if(!u[i])return;var m=new Image;m.onload=function(){window.urldizhi=u[i]},m.onerror=function(){arguments.callee&&arguments.callee(u,++i)},m.src=u[i]+"/favicon.ico?_="+Date.now()}(["https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz","https://lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"],0);
+
+			var bofangmulu="https://lcshenxian.github.io";
 		}
 		}		
     if(system.win||system.mac||system.xll){
@@ -44,6 +46,7 @@ var bofangmulu="https://lcshenxian.github.io";
 			}
 		}
     }
+
 
 
 

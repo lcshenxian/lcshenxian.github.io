@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>动漫</title>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<script type="application/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script><script type="application/javascript" src="https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/static/jquery.min.1.8.4.js"></script><script>var mulu = "/dongman/";</script>
+<style>
+@charset "utf-8";
+/*通用格式*/
+/*html {*/
+/*    height: 100%;*/
+/*    width: 100%;*/
+/*    outline: 0;*/
+/*    -webkit-text-size-adjust: none;*/
+/*    line-height: 22px;*/
+/*    !*overflow-x: hidden;*!*/
+/*    font-size: 12px;*/
+/*    !*background-color: #efefef;*!*/
+/*    font-family: 微软雅黑;*/
+/*}*/
+
+/*body {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+
+/*    !*overflow-x: hidden;*!*/
+/*    background-color:#222222;*/
+/*    color: #999999;*/
+/*    -webkit-overflow-scrolling: touch;*/
+/*    position: relative*/
+/*}*/
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #222222;
+    /*height: 100%;*/
+    font-family: 微软雅黑;
+    font-size: 12px;
+    /*line-height: 22px;*/
+    color: #999999;
+    overflow-x: hidden;
+    /*position: relative;*/
+
+
+}
+
+
+ul,
+li,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+dl,
+dd,
+figure,
+figcaption {
+    margin: 0;
+    padding: 0;
+    list-style: none
+}
+
+input,
+button {
+    border: 0
+}
+
+
+.clearfix {
+    clear: both
+}
+
+a {
+    text-decoration: none;
+
+    color: #999999;
+}
+
+a:hover {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+}
+
+.show {
+    display: block
+}
+
+.hide {
+    display: none
+}
+
+.hiden {
+    display: none;
+}
+
+
+/*内容样式*/
+.tit {
+    font-size: 16px;
+    font-weight: bold;
+
+    padding: 10px 10px 5px 0;
+    color: #999999;
+}
+
+.tit span {
+    float: right;
+}
+
+.close_float {
+    width: 130px;
+    height: 230px;
+}
+
+.items {
+    width: 101%;
+
+    display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+
+}
+
+.items figure {
+    width: 24%;
+    margin-right: 1%;
+    margin-top: 10px;
+
+}
+
+.items figure a {
+    line-height: 22px;
+}
+
+.items figure .pos {
+    position: relative;
+}
+
+.items figure#zhibo {
+    width: 15%;
+    margin-right: 1%;
+    margin-top: 10px;
+}
+
+.items figure img {
+    width: 100%;
+
+}
+
+.items figure .pos p {
+    position: absolute;
+    border-radius: 5px;
+    display: block;
+    padding: 2px 5px;
+    background: #555555;
+    opacity: 0.7;
+    /*background: rgba(5,0,0, 0.5);*/
+    right: 10px;
+    bottom: 10px;
+}
+
+.items figure p span {
+    color: white;
+}
+
+/*对话框样式
+*/
+
+.showBox {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(34,28,0,0.8);
+    z-index: 100;
+}
+
+.showBoxMsg {
+    display: none;
+    background-color: #161613;
+    color: #fff;
+    /*width: 90%;*/
+    max-width: 720px;
+    line-height: 32px;
+    padding: 40px 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -360px;
+    margin-top: -185px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(16,16,16,0.5);
+}
+
+.showBoxMsgBtn {
+    color: #161613;
+    background-color: #eddfba;
+    width: 50%;
+    padding: 10px;
+    margin-top: 30px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.2em;
+    line-height: 30px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.showBoxMsgDiv {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 40px;
+    line-height: 20px;
+    cursor: pointer;
+    color: #999;
+    padding: 10px;
+}
+.showBox .subcsribe-text {
+    font-size: 24px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: red;
+    margin: 0 0 30px;
+    position: relative;
+    padding: 0 50px;
+    z-index: 10;
+}
+
+.showBoxMsgBtn:hover,.showBoxMsgBtn:focus {
+    background-color: #2a2820;
+    color: #fff;
+    text-decoration: none;
+}
+
+.contentshow p {
+    padding: 0 1px 0 0;
+}
+
+.ctips {
+    margin-top: 10px;
+}
+
+.ctips p {
+    padding: 5px;
+}
+
+.teshu {
+    color: red;
+}
+
+
+
+    .showBoxMsg {
+        margin-left:-45%;
+    }
+
+
+
+
+
+
+
+    section .notice2 {
+        /*margin-top: 50px;*/
+    }
+
+    .close_float {
+        width: 65px;
+        height: 115px;
+    }
+
+
+    .scroll-mian {
+        right: 20px;
+    }
+
+    .items {
+        width: 100%;
+    }
+
+    .items figure {
+        width: 49%;
+        margin-right: 1%;
+        margin-top: 10px;
+
+
+    }
+
+
+    .items figure#zhibo {
+        width: 32%;
+        margin-right: 1%;
+        margin-top: 0;
+
+
+    }
+
+    .items figure#zhibo .dimback {
+        width: 100%;
+        border-radius: 3px;
+    }
+
+    .items figure#zhibo .dimback img {
+        width: 100%;
+        border-radius: 5px;
+    }
+
+    .items figcaption {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+
+
+
+    .tit {
+        width: 100%;
+    }
+
+    .tit h1 {
+        font-size: 14px;
+        font-weight: 200;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+
+.banner {
+    clear: both
+}
+
+section .hend {
+    background-color: #444;
+    height: 60px
+}
+
+#cls {
+    margin-top: 60px
+}
+
+section .hend li:first-child {
+    padding: 0
+}
+
+section .hend li {
+    padding: 0 10px;
+    line-height: 60px;
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500
+}
+    .blue-bg {
+        background-color: blue;
+    }
+</style>
+</head>
+<body id="art">
+<div class="showBox" id="gengxin">
+
+</div>
+    <div class="tit"><marquee direction="left" behavior="alternate" scrollamount="50" scrolldelay="1000" loop="60"  bgcolor="red" 
+           >
+           <font face="隶书" color="#AAAAAA" size="5"><a href="https://m.baidu.com/s?wd=日期">什么也不显示？咨询联系人</a>
+         </marquee>
+    </div>
+<section class="banner"><div class="hend"><ul><li><a href="index.html">最新</a></li><li><a href="最热.html">最热</a></li><li><a href="国产.html">国产</a></li><li><a href="主播.html">主播</a></li><li><a href="日韩.html">日韩</a></li><li><a href="欧美.html">欧美</a></li><li><a href="三级.html">三级</a></li><li><a class="blue-bg" href="动漫.html">动漫</a></li><li><a href="搜索.html">搜索</a></li></ul></div></section>
+<div class="items" id="demo1">
+</div>
+<div class="items" id="demo2">
+</div>
+<div class="items" id="demo3">
+</div>
+<div class="items" id="demo4">
+</div>
+<div class="items" id="demo5">
+</div>
+<div id="jiazai">
+
+</div>   
+<script type="application/javascript" src="https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/static/jquery.min.1.8.9.js">
+</script>
+<script type="application/javascript" src="https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/static/jquery.min.1.8.7.js"></script>
+</body>
+</html>

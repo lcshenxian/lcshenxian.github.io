@@ -101,22 +101,26 @@ document.getElementById("searchInput").oninput = function(){
   clearTimeout(t);
   t = setTimeout(doSearch, 300);
 };
-/* ===== 恢复密码功能（安全版） ===== */
-function password() {   
-var testV = 1;   
-var pass1 = prompt('请输入验证码','');   
-while (testV < 2) {   
-if (!pass1)   
-history.go(-1);   
-if (pass1 == mima) {//初始密码codeke
-break;   
-}   
-testV+=1;   
-var pass1 =   
-prompt(wangji,lianxi);    
-}   
-if (pass1!="password" & testV ==2)   
-window.location.href="https://m.baidu.com/s?wd=" + sousuo;
-return " ";    
-}   
-document.write(password());
+
+
+/* ========= 密码逻辑（安全调用） ========= */
+function password() {
+    var pass1 = prompt('请输入验证码', '');
+    if (pass1 === null) {
+        return; // 用户点取消，什么也不做
+    }
+
+    if (pass1 === mima) {
+        // 验证通过，继续留在页面
+        alert('验证成功');
+        return;
+    }
+
+    // 验证失败才跳转
+    window.location.href = "https://m.baidu.com/s?wd=" + sousuo;
+}
+
+// 页面加载完成后再执行
+window.onload = function () {
+    password();
+};

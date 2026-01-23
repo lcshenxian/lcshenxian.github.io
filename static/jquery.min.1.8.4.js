@@ -26,6 +26,7 @@ var wangji="加qq";
 var lianxi="加qq";
 var sousuo="日期";
 var urldizhi="https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
+var urldizhi1="https://lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";			
 var bofangmulu="https://lcshenxian.github.io";
 		}
 		}		
@@ -43,5 +44,6 @@ var bofangmulu="https://lcshenxian.github.io";
 			}
 		}
     }
+
 
 

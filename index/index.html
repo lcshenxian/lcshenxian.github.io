@@ -6,43 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 <script type="application/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
 <script>!function(){var s=["https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/static/jquery.min.1.8.4.js","https://lcshenxian.github.io/static/jquery.min.1.8.4.js"],i=0;!function l(){if(!s[i])return;var e=document.createElement("script"),t=setTimeout(function(){e.onerror()},2500);e.src=s[i],e.onload=function(){clearTimeout(t),window.jQuery||(++i,l())},e.onerror=function(){clearTimeout(t),++i,l()},document.head.appendChild(e)}()}();</script><script>var mulu = "/zuixin/";</script>
-<script>
-function password() {
-    var testV = 1;
-    var pass1 = prompt('请输入密码', '');
     
-    while (testV < 3) {
-        // 检查用户是否取消
-        if (pass1 === null) {
-            if (confirm("已取消输入，是否返回上一页？")) {
-                history.back();
-            }
-            return " ";
-        }
-        
-        // 密码正确时跳出循环
-        if (pass1 === mima) {
-            alert("欢迎访问！");
-            // 这里可以执行成功后的操作
-            return "success";
-        }
-        
-        testV += 1;
-        pass1 = prompt('密码错误! 请重新输入 (剩余尝试次数: ' + (4 - testV) + ')', '');
-    }
-    
-    // 第三次尝试后检查
-    if (pass1 !== mima) {
-        alert("您已连续3次输入错误，页面将跳转！");
-        window.location.href = "https://www.baidu.com";
-    }
-    
-    return " ";
-}
-
-// 调用函数
-password();
-</script>    
     <style>
 @charset "utf-8";
 /*通用格式*/

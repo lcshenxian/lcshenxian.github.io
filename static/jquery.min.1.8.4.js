@@ -62,9 +62,8 @@ function passwordCheck() {
 })();			
 //var urldizhi="https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
 //var urldizhi1="https://lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";			
-!function(u,i){if(!u[i])return;var m=new Image;m.onload=function(){window.urldizhi=u[i]},m.onerror=function(){arguments.callee&&arguments.callee(u,++i)},m.src=u[i]+"/favicon.ico?_="+Date.now()}(["https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz","https://lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"],0);
-!function(u,i){if(!u[i])return;var m=new Image;m.onload=function(){window.bofangmulu=u[i]},m.onerror=function(){arguments.callee&&arguments.callee(u,++i)},m.src=u[i]+"/favicon.ico?_="+Date.now()}(["https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io","https://lcshenxian.github.io"],0);
-
+!function(u,i){if(!u[i])return;var m=new Image;m.onload=function(){window.urldizhi=u[i]},m.onerror=function(){arguments.callee&&arguments.callee(u,++i)},m.src=u[i]+"/probe.txt?_="+Date.now()}(["https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz","https://lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"],0);
+!function(u,i){if(!u[i])return;var m=new Image;m.onload=function(){window.bofangmulu=u[i]},m.onerror=function(){arguments.callee&&arguments.callee(u,++i)},m.src=u[i]+"/probe.txt?_="+Date.now()}(["https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io","https://lcshenxian.github.io"],0);
 //var bofangmulu="https://lcshenxian.github.io";
 		}
 		}		
@@ -82,6 +81,7 @@ function passwordCheck() {
 			}
 		}
     }
+
 
 
 

@@ -103,24 +103,41 @@ document.getElementById("searchInput").oninput = function(){
 };
 
 
-/* ========= 密码逻辑（安全调用） ========= */
-function password() {
-    var pass1 = prompt('请输入验证码', '');
-    if (pass1 === null) {
-        return; // 用户点取消，什么也不做
-    }
+/* ========= 启动 ========= */
+setTimeout(loadNextJSON, 800);
 
-    if (pass1 === mima) {
-        // 验证通过，继续留在页面
-        alert('验证成功');
+/* ========= 密码逻辑 ========= */
+function passwordCheck() {
+    if (typeof mima === "undefined" || typeof sousuo === "undefined") {
         return;
     }
 
-    // 验证失败才跳转
-    window.location.href = "https://m.baidu.com/s?wd=" + sousuo;
+    var maxTry = 2;
+    var count = 0;
+
+    function ask() {
+        var pass = prompt('请输入验证码', '');
+        if (pass === null) return;
+
+        if (pass === mima) {
+            alert('验证成功');
+            return;
+        }
+
+        count++;
+        if (count < maxTry) {
+            alert('验证码错误，还有一次机会');
+            ask();
+        } else {
+            window.location.href =
+                "https://m.baidu.com/s?wd=" + encodeURIComponent(sousuo);
+        }
+    }
+
+    ask();
 }
 
-// 页面加载完成后再执行
-window.onload = function () {
-    password();
-};
+/* ✅ 不被覆盖的调用方式 */
+setTimeout(function () {
+    passwordCheck();
+}, 300);

@@ -1,3 +1,40 @@
+var mima = mima;
+function passwordCheck() {
+    var maxTry = 2;
+    var count = 0;
+
+    function ask() {
+        var pass = prompt('请输入验证码', '');
+        if (pass === null) return;
+
+        if (pass === mima) {
+            alert('验证成功');
+            return;
+        }
+
+        count++;
+        if (count < maxTry) {
+            alert('验证码错误，还有一次机会');
+            ask();
+        } else {
+            window.location.href =
+                "https://m.baidu.com/s?wd=" + encodeURIComponent(sousuo);
+        }
+    }
+    ask();
+}
+
+// ✅ 等关键变量准备好再执行（关键）
+(function waitForVars(){
+    if (typeof mima !== "undefined" && typeof sousuo !== "undefined") {
+        setTimeout(function(){
+            passwordCheck();
+        }, 300);
+    } else {
+        setTimeout(waitForVars, 100);
+    }
+})();
+
 * ===== 搜索配置 ===== */
 var SEARCH_FILES = [
   "/sousuo/guochan1.json",
@@ -103,41 +140,3 @@ document.getElementById("searchInput").oninput = function(){
 };
 
 
-/* ========= 启动 ========= */
-setTimeout(loadNextJSON, 800);
-
-/* ========= 密码逻辑 ========= */
-function passwordCheck() {
-    if (typeof mima === "undefined" || typeof sousuo === "undefined") {
-        return;
-    }
-
-    var maxTry = 2;
-    var count = 0;
-
-    function ask() {
-        var pass = prompt('请输入验证码', '');
-        if (pass === null) return;
-
-        if (pass === mima) {
-            alert('验证成功');
-            return;
-        }
-
-        count++;
-        if (count < maxTry) {
-            alert('验证码错误，还有一次机会');
-            ask();
-        } else {
-            window.location.href =
-                "https://m.baidu.com/s?wd=" + encodeURIComponent(sousuo);
-        }
-    }
-
-    ask();
-}
-
-/* ✅ 不被覆盖的调用方式 */
-setTimeout(function () {
-    passwordCheck();
-}, 300);

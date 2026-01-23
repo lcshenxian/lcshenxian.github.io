@@ -1,3 +1,4 @@
+window.__PWD_OK__ = false;
 var win_Height = window.innerHeight;
 var system={win:false,mac:false,xll:false};
 var p=navigator.platform;
@@ -21,45 +22,55 @@ var nowDate = new Date();
  var day = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
  var shijian = year + "-" + month + "-" + day;
 var jiexijiekou1 ="https://jisjiexi.com/play/?url=";
-var mima="1988", tishi="请勿相信视频当中的任何广告";
+var tishi="请勿相信视频当中的任何广告";
 var wangji="加qq";
 var lianxi="加qq";
 var sousuo="日期";
-function passwordCheck() {
-    var maxTry = 2;
-    var count = 0;
+(function () {
+  if (window.__PWD_INIT__) return;
+  window.__PWD_INIT__ = true;
 
-    function ask() {
-        var pass = prompt('请输入验证码', '');
-        if (pass === null) return;
+  var maxTry = 2;
+  var count = 0;
+  var mima = "1988"; // 你的密码
 
-        if (pass === mima) {
-            alert('验证成功');
-            return;
-        }
+  // 遮罩 + 弹层
+  var html = `
+  <div id="pwdMask" style="
+    position:fixed;left:0;top:0;width:100%;height:100%;
+    background:#fff;z-index:999999;display:flex;
+    align-items:center;justify-content:center;">
+    <div style="width:260px;text-align:center;">
+      <h3>请输入验证码</h3>
+      <input id="pwdInput" type="password"
+        style="width:100%;padding:10px;font-size:16px;">
+      <button id="pwdBtn"
+        style="margin-top:15px;width:100%;height:40px;font-size:16px;">
+        确定
+      </button>
+      <p id="pwdMsg" style="color:red;margin-top:10px;"></p>
+    </div>
+  </div>`;
+  document.body.insertAdjacentHTML("beforeend", html);
 
-        count++;
-        if (count < maxTry) {
-            alert('验证码错误，还有一次机会');
-            ask();
-        } else {
-            window.location.href =
-                "https://m.baidu.com/s?wd=" + encodeURIComponent(sousuo);
-        }
+  document.getElementById("pwdBtn").onclick = function () {
+    var v = document.getElementById("pwdInput").value;
+
+    if (v === mima) {
+      window.__PWD_OK__ = true;          // 🔓 解锁
+      document.getElementById("pwdMask").remove();
+      return;
     }
-    ask();
-}
 
-// ✅ 等关键变量准备好再执行（关键）
-(function waitForVars(){
-    if (typeof mima !== "undefined" && typeof sousuo !== "undefined") {
-        setTimeout(function(){
-            passwordCheck();
-        }, 300);
+    count++;
+    if (count < maxTry) {
+      document.getElementById("pwdMsg").innerText =
+        "验证码错误，还有一次机会";
     } else {
-        setTimeout(waitForVars, 100);
+      location.href = "https://m.baidu.com/";
     }
-})();			
+  };
+})();
 //var urldizhi="https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
 //var urldizhi1="https://lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";			
 !function(u,i){if(!u[i])return;var m=new Image;m.onload=function(){window.urldizhi=u[i]},m.onerror=function(){arguments.callee&&arguments.callee(u,++i)},m.src=u[i]+"/probe.txt?_="+Date.now()}(["https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz","https://lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"],0);
@@ -81,6 +92,7 @@ function passwordCheck() {
 			}
 		}
     }
+
 
 
 

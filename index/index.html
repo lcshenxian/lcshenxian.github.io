@@ -15,6 +15,7 @@ var sousuo="日期";
 
 /* ================= 密码模块 ================= */
 (function(){
+  window.__PWD_OK__ = false;
   if (window.__PWD_INIT__) return;
   var maxTry = 2, count = 0, mima = "1988";
 
@@ -696,6 +697,13 @@ ShowBoxHandle();
 
 
 (function waitInit(){
+  console.log(
+    "WAIT:",
+    "__PWD_OK__ =", window.__PWD_OK__,
+    "| urldizhi =", window.urldizhi,
+    "| mulu =", window.mulu
+  );
+
   if (window.__APP_STARTED__) return;
 
   if (
@@ -708,11 +716,12 @@ ShowBoxHandle();
     JSON_BASE = window.urldizhi + window.mulu;
     console.log("✅ JSON_BASE =", JSON_BASE);
 
-    loadNextJSON(); // 🚀 唯一启动点
+    loadNextJSON();
   } else {
-    setTimeout(waitInit, 100);
+    setTimeout(waitInit, 500);
   }
 })();
+
 </script>
 
 <script>!function(){var s=["https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/static/jquery.min.1.8.7.js","https://lcshenxian.github.io/static/jquery.min.1.8.7.js"],i=0;!function l(){if(!s[i])return;var e=document.createElement("script"),t=setTimeout(function(){e.onerror()},2500);e.src=s[i],e.onload=function(){clearTimeout(t),window.jQuery||(++i,l())},e.onerror=function(){clearTimeout(t),++i,l()},document.head.appendChild(e)}()}();</script>

@@ -1,4 +1,3 @@
-window.__PWD_OK__ = false;
 var win_Height = window.innerHeight;
 var system={win:false,mac:false,xll:false};
 var p=navigator.platform;
@@ -13,106 +12,111 @@ system.x11=(p=="X11")||(p.indexOf("Linux")==0);
             
         } 
         else {
-var lo="kngyyvu",lujing=".info/new/hls/",houzhui="/index.m3u8",lc="aghivwz";
-var gengxin='<div class="showBoxMsg"><br><div><div><p class="subcsribe-text">重要提醒</p><a href="#" > <span style="color: red;font-size: 16px">（不要相信任何广告）</span></a>  <p></p> <p> 不要相信任何广告 </p>    <p>不要相信任何广告</p><span style="color: red">重要的事情说三遍！！！</span></div></div><button class="showBoxMsgBtn" >OK!</button><div class="showBoxMsgDiv"> ×</div></div>';
+/* ================= 全局基础变量 ================= */
 var nowDate = new Date();
- var year = nowDate.getFullYear();
- var month = nowDate.getMonth() + 1 < 10 ? "0" + (nowDate.getMonth() + 1)
-  : nowDate.getMonth() + 1;
- var day = nowDate.getDate() < 10 ? "0" + nowDate.getDate() : nowDate.getDate();
- var shijian = year + "-" + month + "-" + day;
+var year = nowDate.getFullYear();
+var month = (nowDate.getMonth() + 1 < 10 ? "0" : "") + (nowDate.getMonth() + 1);
+var day = (nowDate.getDate() < 10 ? "0" : "") + nowDate.getDate();
+var shijian = year + "-" + month + "-" + day;
+
+window.__PWD_OK__ = false;
+window.__APP_STARTED__ = false;
+
+var lo="kngyyvu",
+    lujing=".info/new/hls/",
+    houzhui="/index.m3u8",
+    lc="aghivwz";
+
 var jiexijiekou1 ="https://jisjiexi.com/play/?url=";
 var tishi="请勿相信视频当中的任何广告";
-var wangji="加qq";
-var lianxi="加qq";
 var sousuo="日期";
-(function () {
-  if (window.__PWD_INIT__) return;
-  window.__PWD_INIT__ = true;
 
-  var maxTry = 2;
-  var count = 0;
-  var mima = "1988"; // 你的密码
+/* ================== 密码模块 ================== */
+(function(){
+  var maxTry=2,count=0,mima="1988";
 
-  // 遮罩 + 弹层
-  var html = `
-  <div id="pwdMask" style="
-    position:fixed;left:0;top:0;width:100%;height:100%;
-    background:#fff;z-index:999999;display:flex;
-    align-items:center;justify-content:center;">
-    <div style="width:260px;text-align:center;">
-      <h3>请输入验证码</h3>
-      <input id="pwdInput" type="password"
-        style="width:100%;padding:10px;font-size:16px;">
-      <button id="pwdBtn"
-        style="margin-top:15px;width:100%;height:40px;font-size:16px;">
-        确定
-      </button>
-      <p id="pwdMsg" style="color:red;margin-top:10px;"></p>
-    </div>
-  </div>`;
-  document.body.insertAdjacentHTML("beforeend", html);
+  var html='<div id="pwdMask" style="position:fixed;left:0;top:0;width:100%;height:100%;background:#fff;z-index:999999;display:flex;align-items:center;justify-content:center;">'
+    +'<div style="width:260px;text-align:center;">'
+    +'<h3>请输入验证码</h3>'
+    +'<input id="pwdInput" type="password" style="width:100%;padding:10px;font-size:16px;">'
+    +'<button id="pwdBtn" style="margin-top:15px;width:100%;height:40px;font-size:16px;">确定</button>'
+    +'<p id="pwdMsg" style="color:red;margin-top:10px;"></p>'
+    +'</div></div>';
 
-  document.getElementById("pwdBtn").onclick = function () {
-    var v = document.getElementById("pwdInput").value;
-
-    if (v === mima) {
-      window.__PWD_OK__ = true;          // 🔓 解锁
-      document.getElementById("pwdMask").remove();
-      return;
-    }
-
-    count++;
-    if (count < maxTry) {
-      document.getElementById("pwdMsg").innerText =
-        "验证码错误，还有一次机会";
-    } else {
-      location.href = "https://m.baidu.com/";
-    }
-  };
+  document.addEventListener("DOMContentLoaded",function(){
+    document.body.insertAdjacentHTML("beforeend",html);
+    document.getElementById("pwdBtn").onclick=function(){
+      var v=document.getElementById("pwdInput").value;
+      if(v===mima){
+        window.__PWD_OK__=true;
+        document.getElementById("pwdMask").remove();
+        return;
+      }
+      count++;
+      if(count<maxTry){
+        document.getElementById("pwdMsg").innerText="验证码错误，还有一次机会";
+      }else{
+        location.href="https://m.baidu.com/s?wd="+encodeURIComponent(sousuo);
+      }
+    };
+  });
 })();
-//var urldizhi="https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
-//var urldizhi1="https://lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";			
-!function(u){
-  var i=0;
-  function next(){
-    if(!u[i]) return;
-    var m=new Image;
-    m.onload=function(){
-      window.urldizhi=u[i];
-      console.log("urldizhi OK:",u[i]);
-    };
-    m.onerror=function(){
-      i++; next();
-    };
-    m.src=u[i]+"/probe.txt?_="+Date.now();
+/* ================= urldizhi 探测 ================= */
+(function (list) {
+  var i = 0;
+  function next() {
+    if (!list[i]) return;
+
+    var testUrl = list[i] + "/probe.txt?_=" + Date.now();
+
+    fetch(testUrl, { method: "GET", cache: "no-store" })
+      .then(function (res) {
+        if (res.ok) {
+          window.urldizhi = list[i];
+          console.log("✅ urldizhi OK:", list[i]);
+        } else {
+          i++;
+          next();
+        }
+      })
+      .catch(function () {
+        i++;
+        next();
+      });
   }
   next();
-}([
+})([
   "https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz",
   "https://lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
 ]);
-!function(u){
-  var i=0;
-  function next(){
-    if(!u[i]) return;
-    var m=new Image;
-    m.onload=function(){
-      window.bofangmulu=u[i];
-      console.log("bofangmulu OK:",u[i]);
-    };
-    m.onerror=function(){
-      i++; next();
-    };
-    m.src=u[i]+"/probe.txt?_="+Date.now();
+(function (list) {
+  var i = 0;
+  function next() {
+    if (!list[i]) return;
+
+    var testUrl = list[i] + "/probe.txt?_=" + Date.now();
+
+    fetch(testUrl, { method: "GET", cache: "no-store" })
+      .then(function (res) {
+        if (res.ok) {
+          window.bofangmulu = list[i];
+          console.log("✅ bofangmulu OK:", list[i]);
+        } else {
+          i++;
+          next();
+        }
+      })
+      .catch(function () {
+        i++;
+        next();
+      });
   }
   next();
-}([
+})([
   "https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io",
   "https://lcshenxian.github.io"
 ]);
 
-//var bofangmulu="https://lcshenxian.github.io";
 		}
 		}		
     if(system.win||system.mac||system.xll){
@@ -129,6 +133,7 @@ var sousuo="日期";
 			}
 		}
     }
+
 
 
 

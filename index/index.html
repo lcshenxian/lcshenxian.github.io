@@ -48,42 +48,61 @@ var sousuo="日期";
 })();
 
 /* ================= urldizhi 探测 ================= */
-!function(list){
-  var i=0;
-  function next(){
-    if(!list[i]) return;
-    var img=new Image();
-    img.onload=function(){
-      window.urldizhi=list[i];
-      console.log("urldizhi OK:",list[i]);
-    };
-    img.onerror=function(){i++;next();};
-    img.src=list[i]+"/probe.txt?_="+Date.now();
+(function (list) {
+  var i = 0;
+  function next() {
+    if (!list[i]) return;
+
+    var testUrl = list[i] + "/probe.txt?_=" + Date.now();
+
+    fetch(testUrl, { method: "GET", cache: "no-store" })
+      .then(function (res) {
+        if (res.ok) {
+          window.urldizhi = list[i];
+          console.log("✅ urldizhi OK:", list[i]);
+        } else {
+          i++;
+          next();
+        }
+      })
+      .catch(function () {
+        i++;
+        next();
+      });
   }
   next();
-}([
+})([
   "https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz",
   "https://lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
 ]);
-!function(u){
-  var i=0;
-  function next(){
-    if(!u[i]) return;
-    var m=new Image;
-    m.onload=function(){
-      window.bofangmulu=u[i];
-      console.log("bofangmulu OK:",u[i]);
-    };
-    m.onerror=function(){
-      i++; next();
-    };
-    m.src=u[i]+"/probe.txt?_="+Date.now();
+(function (list) {
+  var i = 0;
+  function next() {
+    if (!list[i]) return;
+
+    var testUrl = list[i] + "/probe.txt?_=" + Date.now();
+
+    fetch(testUrl, { method: "GET", cache: "no-store" })
+      .then(function (res) {
+        if (res.ok) {
+          window.bofangmulu = list[i];
+          console.log("✅ bofangmulu OK:", list[i]);
+        } else {
+          i++;
+          next();
+        }
+      })
+      .catch(function () {
+        i++;
+        next();
+      });
   }
   next();
-}([
+})([
   "https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io",
   "https://lcshenxian.github.io"
 ]);
+
 /* ================= mulu ================= */
 var mulu="/zuixin/";
 </script>

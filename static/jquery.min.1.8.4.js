@@ -121,7 +121,7 @@ var sousuo="日期";
 		}		
     if(system.win||system.mac||system.xll){
 		let temp = '<div style="position: fixed; top: 0px;padding-top:20px; z-index: 99999; width: 100%; height: '+win_Height+'px; background-color: #ffffff; font-size: 16px;"><center><h2>404 Not Found</h2></center><hr><center>nginx pc</center></div>';
-		eval("do"+"cu"+"ment.wr"+"ite('"+temp+"');");
+		document.write(temp);
 		document.getElementsByTagName("title")[0].innerHTML = "\u0034\u0030\u0034";
 		document.oncontextmenu = false;
 		document.onkeydown = function(e) {
@@ -133,6 +133,7 @@ var sousuo="日期";
 			}
 		}
     }
+
 
 
 

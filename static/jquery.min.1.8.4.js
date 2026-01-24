@@ -1,5 +1,5 @@
 var win_Height = window.innerHeight;
-var system={win:false,mac:false,xll:false};
+var system={win:false,mac:false,x11:false};
 var p=navigator.platform;
 var us=navigator.userAgent.toLowerCase();
 system.win=p.indexOf("Win")==0;
@@ -8,7 +8,7 @@ system.x11=(p=="X11")||(p.indexOf("Linux")==0);
 
 
 		if (/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|QQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i["\x74\x65\x73\x74"](navigator["\x75\x73\x65\x72\x41\x67\x65\x6e\x74"])) {	
-        if(system.win||system.mac||system.xll){
+        if(system.win||system.mac||system.x11){
             
         } 
         else {
@@ -33,32 +33,44 @@ var sousuo="日期";
 
 /* ================== 密码模块 ================== */
 (function(){
-  var maxTry=2,count=0,mima="1988";
+  var maxTry = 2, count = 0, mima = "1988";
 
-  var html='<div id="pwdMask" style="position:fixed;left:0;top:0;width:100%;height:100%;background:#fff;z-index:999999;display:flex;align-items:center;justify-content:center;">'
-    +'<div style="width:260px;text-align:center;">'
-    +'<h3>请输入验证码</h3>'
-    +'<input id="pwdInput" type="password" style="width:100%;padding:10px;font-size:16px;">'
-    +'<button id="pwdBtn" style="margin-top:15px;width:100%;height:40px;font-size:16px;">确定</button>'
-    +'<p id="pwdMsg" style="color:red;margin-top:10px;"></p>'
-    +'</div></div>';
+  var html =
+  '<div id="pwdMask" style="\
+    position:fixed;left:0;top:0;\
+    width:100%;height:100%;\
+    background:#fff;\
+    z-index:2147483647;\
+    pointer-events:auto;\
+    display:flex;\
+    align-items:center;\
+    justify-content:center;">' +
+    '<div style="width:260px;text-align:center;">' +
+      '<h3>请输入验证码</h3>' +
+      '<input id="pwdInput" type="password" style="width:100%;padding:10px;font-size:16px;">' +
+      '<button id="pwdBtn" style="margin-top:15px;width:100%;height:40px;font-size:16px;">确定</button>' +
+      '<p id="pwdMsg" style="color:red;margin-top:10px;"></p>' +
+    '</div>' +
+  '</div>';
 
-  document.addEventListener("DOMContentLoaded",function(){
-    document.body.insertAdjacentHTML("beforeend",html);
-    document.getElementById("pwdBtn").onclick=function(){
-      var v=document.getElementById("pwdInput").value;
-      if(v===mima){
-        window.__PWD_OK__=true;
+  document.addEventListener("DOMContentLoaded", function(){
+    document.body.insertAdjacentHTML("beforeend", html);
+
+    var btn = document.getElementById("pwdBtn");
+    btn.addEventListener("click", function(){
+      var v = document.getElementById("pwdInput").value;
+      if (v === mima) {
+        window.__PWD_OK__ = true;
         document.getElementById("pwdMask").remove();
         return;
       }
       count++;
-      if(count<maxTry){
-        document.getElementById("pwdMsg").innerText="验证码错误，还有一次机会";
-      }else{
-        location.href="https://m.baidu.com/s?wd="+encodeURIComponent(sousuo);
+      document.getElementById("pwdMsg").innerText =
+        count < maxTry ? "验证码错误，还有一次机会" : "错误次数过多";
+      if (count >= maxTry) {
+        location.href = "https://m.baidu.com/";
       }
-    };
+    });
   });
 })();
 /* ================= urldizhi 探测 ================= */
@@ -119,7 +131,7 @@ var sousuo="日期";
 
 		}
 		}		
-if(system.win||system.mac||system.xll){
+if(system.win||system.mac||system.x11){
     // 等待DOM完全加载
     function init404Page() {
         let temp = '<div style="position: fixed; top: 0px;padding-top:20px; z-index: 99999; width: 100%; height: '+win_Height+'px; background-color: #ffffff; font-size: 16px;"><center><h2>404 Not Found</h2></center><hr><center>nginx pc</center></div>';
@@ -166,6 +178,7 @@ if(system.win||system.mac||system.xll){
         init404Page();
     }
 }
+
 
 
 

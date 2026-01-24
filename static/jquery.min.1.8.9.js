@@ -9,8 +9,7 @@
 var RANDOM_RANGE = 5;
 var JSON_INDEX = Math.floor(Math.random() * RANDOM_RANGE);// 当前 JSON 编号
 
-var JSON_BASE = "";
-
+var JSON_BASE = urldizhi + mulu;
 
 var FAIL_COUNT = 0;     // 连续失败次数
 var FAIL_LIMIT = 2;     // 连续失败上限（2 次认为后面没了）
@@ -194,18 +193,6 @@ function ShowBoxHandle() {
 }
 ShowBoxHandle();
 
-(function waitAll(){
-  if (window.__JS2_STARTED__) return;
+setTimeout(loadNextJSON, 800);
 
-  if (
-    window.__PWD_OK__ &&
-    window.urldizhi &&
-    typeof mulu !== "undefined"
-  ) {
-    window.__JS2_STARTED__ = true; // 🔒 启动锁
-    JSON_BASE = urldizhi + mulu;
-    loadNextJSON();
-  } else {
-    setTimeout(waitAll, 100);
-  }
-})();
+

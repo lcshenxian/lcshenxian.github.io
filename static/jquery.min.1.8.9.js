@@ -1,28 +1,12 @@
-/* ========= 启动 ========= */
-/********************************************************
- * 1.8.8.js 最终完整版
- * 低噪音 JSON 顺序探测 + 单 JSON 下滑慢加载
- * 纯静态 · GitHub Pages 专用
- ********************************************************/
+/* ================== JSON 加载系统 ================== */
+var RANDOM_RANGE=5;
+var JSON_INDEX=Math.floor(Math.random()*RANDOM_RANGE);
+var JSON_BASE="";
+var FAIL_COUNT=0,FAIL_LIMIT=2,LOAD_COUNT=0;
+var PAGE_SIZE=12;
+var currentData=[],renderIndex=0,currentContainer=null,isRendering=false;
 
-/* ========= JSON 探测配置 ========= */
-var RANDOM_RANGE = 5;
-var JSON_INDEX = Math.floor(Math.random() * RANDOM_RANGE);// 当前 JSON 编号
-
-var JSON_BASE = urldizhi + mulu;
-
-var FAIL_COUNT = 0;     // 连续失败次数
-var FAIL_LIMIT = 2;     // 连续失败上限（2 次认为后面没了）
-var LOAD_COUNT = 0;     // 已成功加载的 JSON 数（demo1、demo2…）
-
-/* ========= 单 JSON 内部慢加载配置 ========= */
-var PAGE_SIZE = 12;     // 每次渲染条数（10~15 最稳）
-var currentData = [];   // 当前 JSON 的完整数据
-var renderIndex = 0;    // 当前已渲染到的位置
-var currentContainer = null;
-var isRendering = false;
-
-/* ========= 渲染一批数据 ========= */
+/* 渲染 */
 function renderChunk() {
   if (!currentContainer || isRendering) return;
 
@@ -33,19 +17,24 @@ function renderChunk() {
 
   for (var i = renderIndex; i < end; i++) {
     var item = currentData[i];
+    var bofang = item && item.bofang ? String(item.bofang) : "";
+    var biaoti = item && item.biaoti ? String(item.biaoti) : "";
+
     html +=
       '<figure>' +
         '<div class="pos">' +
           '<a href="' + jiexijiekou1 + 'https://' +
-            lo + lujing + item.bofang + houzhui +
-            '" target="_blank">' +
+            lo + lujing + encodeURIComponent(bofang) + houzhui +
+            '" target="_blank" rel="noopener noreferrer">' +
             '<img src="https://' + lc + '.info/pic/' +
-              item.bofang + '.jpg" class="lazy">' +
+              encodeURIComponent(bofang) + '.jpg" class="lazy">' +
             '<p>' + shijian + '</p>' +
           '</a>' +
         '</div>' +
-        '<a href="#"><figcaption>' +
-          item.biaoti +
+        '<a href="' + jiexijiekou1 + 'https://' +
+            lo + lujing + encodeURIComponent(bofang) + houzhui +
+            '" onclick="return false;"><figcaption>' +
+          biaoti +
         '</figcaption></a>' +
       '</figure>';
   }
@@ -55,94 +44,21 @@ function renderChunk() {
   isRendering = false;
 }
 
-/* ========= 滚动触发 ========= */
-function bindScrollLoad() {
-  window.onscroll = function () {
-    if (!currentContainer) return;
 
-    var nearBottom =
-      window.innerHeight + window.scrollY >=
-      document.body.offsetHeight - 120;
-
-    if (nearBottom) {
-      if (renderIndex < currentData.length) {
-        renderChunk();
-      } else {
-        loadNextJSON(); // 当前 JSON 播完，自动切下一个
-      }
+/* 滚动 */
+var lock=false;
+window.onscroll=function(){
+  if(lock)return;
+  lock=true;
+  setTimeout(function(){
+    lock=false;
+    if(!currentContainer)return;
+    if(window.innerHeight+scrollY>=document.body.offsetHeight-120){
+      if(renderIndex<currentData.length)renderChunk();
+      else loadNextJSON();
     }
-  };
-}
-
-/* ========= 加载下一个 JSON ========= */
-function loadNextJSON() {
-  if (FAIL_COUNT >= FAIL_LIMIT) {
-    finishLoad();
-    return;
-  }
-
-  var url = JSON_BASE +
-    (JSON_INDEX === 0 ? "index.json" : "index" + JSON_INDEX + ".json");
-
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", url, true);
-  xhr.send();
-
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-
-      if (xhr.status === 200) {
-        try {
-          var obj = JSON.parse(xhr.responseText);
-
-          FAIL_COUNT = 0;
-          JSON_INDEX++;
-          LOAD_COUNT++;
-
-          // 准备容器
-          var targetId = "demo" + LOAD_COUNT;
-          var container = document.getElementById(targetId);
-
-          if (!container) {
-            container = document.createElement("div");
-            container.className = "items";
-            container.id = targetId;
-            document.body.insertBefore(
-              container,
-              document.getElementById("jiazai")
-            );
-          }
-
-          // 初始化慢加载状态
-          currentData = obj;
-          renderIndex = 0;
-          currentContainer = container;
-
-          renderChunk();
-          bindScrollLoad();
-
-        } catch (e) {
-          FAIL_COUNT++;
-          JSON_INDEX++;
-        }
-
-      } else {
-        FAIL_COUNT++;
-        JSON_INDEX++;
-      }
-    }
-  };
-}
-
-/* ========= 加载完毕 ========= */
-function finishLoad() {
-  window.onscroll = null;
-  document.getElementById("jiazai").innerHTML =
-    '<center>' +
-      '<input type="button" value="加载完毕" ' +
-      'style="font-size:62px;height:150px;width:100%;" />' +
-    '</center>';
-}
+  },200);
+};
 
 /* ========= 文案替换 & 弹窗 ========= */
 (function () {
@@ -154,45 +70,36 @@ function finishLoad() {
   if (gx) gx.innerHTML = gengxin;
 })();
 
-/* ========= ShowBox（保持原效果） ========= */
-function ShowBoxHandle() {
-  function setOpacity(el, o) {
-    el.style.opacity = o;
-    el.filter = "alpha(opacity=" + o + ")";
+/* JSON */
+function loadNextJSON(){
+  if(FAIL_COUNT>=FAIL_LIMIT){
+    document.getElementById("jiazai").innerHTML="已全部加载";
+    return;
   }
-  function fadeIn(el) {
-    el.style.display = "block";
-    var v = 0;
-    (function f() {
-      setOpacity(el, v);
-      if ((v += 5) <= 100) setTimeout(f, 10);
-    })();
-  }
-  function fadeOut(el) {
-    var v = 100;
-    (function f() {
-      setOpacity(el, v);
-      if ((v -= 5) >= 0) setTimeout(f, 10);
-      else el.style.display = "none";
-    })();
-  }
-
-  var box = document.querySelector(".showBox");
-  var msg = document.querySelector(".showBoxMsg");
-  if (!box || !msg) return;
-
-  box.onclick = msg.onclick = function () {
-    fadeOut(box);
-    fadeOut(msg);
+  var url=JSON_BASE+(JSON_INDEX===0?"index.json":"index"+JSON_INDEX+".json");
+  var xhr=new XMLHttpRequest();
+  xhr.open("GET",url,true);
+  xhr.send();
+  xhr.onload=function(){
+    if(xhr.status===200){
+      var obj=JSON.parse(xhr.responseText);
+      FAIL_COUNT=0;JSON_INDEX++;LOAD_COUNT++;
+      var div=document.createElement("div");
+      div.className="items";
+      document.body.insertBefore(div,document.getElementById("jiazai"));
+      currentContainer=div;
+      currentData=obj;renderIndex=0;
+      renderChunk();
+    }else{FAIL_COUNT++;JSON_INDEX++;}
   };
-
-  setTimeout(function () {
-    fadeIn(box);
-    fadeIn(msg);
-  }, 100);
 }
-ShowBoxHandle();
 
-setTimeout(loadNextJSON, 800);
-
-
+/* 启动器（唯一入口） */
+(function waitInit(){
+  if(window.__APP_STARTED__)return;
+  if(window.__PWD_OK__ && typeof window.urldizhi==="string"){
+    window.__APP_STARTED__=true;
+    JSON_BASE=window.urldizhi+mulu;
+    loadNextJSON();
+  }else setTimeout(waitInit,100);
+})();

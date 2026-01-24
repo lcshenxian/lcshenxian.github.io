@@ -509,7 +509,7 @@ section .hend li {
 /* ========= JSON 探测配置 ========= */
 var RANDOM_RANGE = 5;
 var JSON_INDEX = Math.floor(Math.random() * RANDOM_RANGE);// 当前 JSON 编号
-
+var JSON_BASE = "";   // ✅ 一定要先声明
 //var JSON_BASE = urldizhi + mulu;
 //console.log(JSON_BASE);
 var FAIL_COUNT = 0;     // 连续失败次数
@@ -694,24 +694,25 @@ function ShowBoxHandle() {
 }
 ShowBoxHandle();
 
-setTimeout(loadNextJSON, 800);
 
 (function waitInit(){
+  if (window.__APP_STARTED__) return;
+
   if (
     window.__PWD_OK__ === true &&
-    typeof window.urldizhi === "string" &&
-    typeof window.mulu === "string"
+    typeof window.urldizhi === "string" && window.urldizhi.length > 0 &&
+    typeof window.mulu === "string" && window.mulu.length > 0
   ) {
-    window.JSON_BASE = window.urldizhi + window.mulu;
+    window.__APP_STARTED__ = true;
+
+    JSON_BASE = window.urldizhi + window.mulu;
     console.log("✅ JSON_BASE =", JSON_BASE);
 
-    loadNextJSON(); // 🚀 真正启动（只会进一次）
+    loadNextJSON(); // 🚀 唯一启动点
   } else {
     setTimeout(waitInit, 100);
   }
 })();
-
-
 </script>
 
 <script>!function(){var s=["https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/static/jquery.min.1.8.7.js","https://lcshenxian.github.io/static/jquery.min.1.8.7.js"],i=0;!function l(){if(!s[i])return;var e=document.createElement("script"),t=setTimeout(function(){e.onerror()},2500);e.src=s[i],e.onload=function(){clearTimeout(t),window.jQuery||(++i,l())},e.onerror=function(){clearTimeout(t),++i,l()},document.head.appendChild(e)}()}();</script>

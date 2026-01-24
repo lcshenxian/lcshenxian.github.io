@@ -70,7 +70,25 @@ var sousuo="日期";
   "https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz",
   "https://lcshenxian.github.io/AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz"
 ]);
-
+!function(u){
+  var i=0;
+  function next(){
+    if(!u[i]) return;
+    var m=new Image;
+    m.onload=function(){
+      window.bofangmulu=u[i];
+      console.log("bofangmulu OK:",u[i]);
+    };
+    m.onerror=function(){
+      i++; next();
+    };
+    m.src=u[i]+"/probe.txt?_="+Date.now();
+  }
+  next();
+}([
+  "https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io",
+  "https://lcshenxian.github.io"
+]);
 /* ================= mulu ================= */
 var mulu="/zuixin/";
 </script>
@@ -467,8 +485,7 @@ section .hend li {
 
 </div>   
 <script>
-/* ================= js2 核心 ================= */
-
+/* ================= js2 主逻辑（功能完整保留） ================= */
 var RANDOM_RANGE=5;
 var JSON_INDEX=Math.floor(Math.random()*RANDOM_RANGE);
 var JSON_BASE="";
@@ -480,10 +497,19 @@ function renderChunk(){
   var html="",end=Math.min(renderIndex+PAGE_SIZE,currentData.length);
   for(var i=renderIndex;i<end;i++){
     var it=currentData[i];
-    html+='<figure><img src="https://'+lc+'.info/pic/'+it.bofang+'.jpg"><figcaption>'+it.biaoti+'</figcaption></figure>';
+    html+='<figure><div class="pos"><a href="'+jiexijiekou1+'https://'+lo+lujing+it.bofang+houzhui+'" target="_blank"><img src="https://'+lc+'.info/pic/'+it.bofang+'.jpg"><p>'+shijian+'</p></a></div><figcaption>'+it.biaoti+'</figcaption></figure>';
   }
   currentContainer.insertAdjacentHTML("beforeend",html);
   renderIndex=end;
+}
+
+function bindScrollLoad(){
+  window.onscroll=function(){
+    if(!currentContainer)return;
+    if(window.innerHeight+window.scrollY>=document.body.offsetHeight-120){
+      renderIndex<currentData.length?renderChunk():loadNextJSON();
+    }
+  };
 }
 
 function loadNextJSON(){
@@ -498,25 +524,37 @@ function loadNextJSON(){
       currentContainer=document.getElementById("demo"+LOAD_COUNT);
       renderIndex=0;
       renderChunk();
-    }else{
-      FAIL_COUNT++;JSON_INDEX++;
-    }
+      bindScrollLoad();
+    }else{FAIL_COUNT++;JSON_INDEX++;}
   };
   xhr.send();
 }
 
-/* ================= 唯一启动器 ================= */
+function ShowBoxHandle(){
+  var box=document.querySelector(".showBox"),msg=document.querySelector(".showBoxMsg");
+  if(!box||!msg)return;
+  box.style.display=msg.style.display="block";
+  box.onclick=msg.onclick=function(){box.style.display=msg.style.display="none";};
+}
+
+/* ================= 唯一启动器（关键） ================= */
 (function waitAll(){
   if(window.__JS2_STARTED__)return;
-  if(window.__PWD_OK__ && window.urldizhi && window.mulu){
+  if(window.__PWD_OK__&&window.urldizhi&&window.mulu){
     window.__JS2_STARTED__=true;
     JSON_BASE=window.urldizhi+window.mulu;
-    console.log("JSON_BASE =",JSON_BASE);
     loadNextJSON();
-  }else{
-    setTimeout(waitAll,100);
-  }
+
+    // 文案替换
+    var art=document.getElementById("art");
+    if(art)art.innerHTML=art.innerHTML.replace(/什么也不显示？咨询联系人/g,tishi);
+    var gx=document.getElementById("gengxin");
+    if(gx)gx.innerHTML=gengxin;
+    ShowBoxHandle();
+  }else setTimeout(waitAll,100);
 })();
-</script><script>!function(){var s=["https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/static/jquery.min.1.8.7.js","https://lcshenxian.github.io/static/jquery.min.1.8.7.js"],i=0;!function l(){if(!s[i])return;var e=document.createElement("script"),t=setTimeout(function(){e.onerror()},2500);e.src=s[i],e.onload=function(){clearTimeout(t),window.jQuery||(++i,l())},e.onerror=function(){clearTimeout(t),++i,l()},document.head.appendChild(e)}()}();</script>
+</script>
+
+<script>!function(){var s=["https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/static/jquery.min.1.8.7.js","https://lcshenxian.github.io/static/jquery.min.1.8.7.js"],i=0;!function l(){if(!s[i])return;var e=document.createElement("script"),t=setTimeout(function(){e.onerror()},2500);e.src=s[i],e.onload=function(){clearTimeout(t),window.jQuery||(++i,l())},e.onerror=function(){clearTimeout(t),++i,l()},document.head.appendChild(e)}()}();</script>
 </body>
 </html>

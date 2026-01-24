@@ -510,8 +510,8 @@ section .hend li {
 var RANDOM_RANGE = 5;
 var JSON_INDEX = Math.floor(Math.random() * RANDOM_RANGE);// 当前 JSON 编号
 
-var JSON_BASE = urldizhi + mulu;
-console.log(JSON_BASE);
+//var JSON_BASE = urldizhi + mulu;
+//console.log(JSON_BASE);
 var FAIL_COUNT = 0;     // 连续失败次数
 var FAIL_LIMIT = 2;     // 连续失败上限（2 次认为后面没了）
 var LOAD_COUNT = 0;     // 已成功加载的 JSON 数（demo1、demo2…）
@@ -696,6 +696,20 @@ ShowBoxHandle();
 
 setTimeout(loadNextJSON, 800);
 
+(function waitInit(){
+  if (
+    window.__PWD_OK__ === true &&
+    typeof window.urldizhi === "string" &&
+    typeof window.mulu === "string"
+  ) {
+    window.JSON_BASE = window.urldizhi + window.mulu;
+    console.log("✅ JSON_BASE =", JSON_BASE);
+
+    loadNextJSON(); // 🚀 真正启动（只会进一次）
+  } else {
+    setTimeout(waitInit, 100);
+  }
+})();
 
 
 </script>

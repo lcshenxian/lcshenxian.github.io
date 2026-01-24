@@ -6,9 +6,6 @@
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
 <script type="application/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.2/jquery.min.js"></script>
 <script>
-/* ================= 全局状态 ================= */
-window.__PWD_OK__ = false;
-window.__JS2_STARTED__ = false;
 
 /* ================= 业务变量 ================= */
 var lo="kngyyvu",lujing=".info/new/hls/",houzhui="/index.m3u8",lc="aghivwz";
@@ -19,8 +16,6 @@ var sousuo="日期";
 /* ================= 密码模块 ================= */
 (function(){
   if (window.__PWD_INIT__) return;
-  window.__PWD_INIT__ = true;
-
   var maxTry = 2, count = 0, mima = "1988";
 
   var html =
@@ -485,74 +480,205 @@ section .hend li {
 
 </div>   
 <script>
-/* ================= js2 主逻辑（功能完整保留） ================= */
-var RANDOM_RANGE=5;
-var JSON_INDEX=Math.floor(Math.random()*RANDOM_RANGE);
-var JSON_BASE="";
-var FAIL_COUNT=0,FAIL_LIMIT=2,LOAD_COUNT=0;
-var PAGE_SIZE=12,currentData=[],renderIndex=0,currentContainer=null;
+/* ========= 启动 ========= */
+/********************************************************
+ * 1.8.8.js 最终完整版
+ * 低噪音 JSON 顺序探测 + 单 JSON 下滑慢加载
+ * 纯静态 · GitHub Pages 专用
+ ********************************************************/
 
-function renderChunk(){
-  if(!currentContainer)return;
-  var html="",end=Math.min(renderIndex+PAGE_SIZE,currentData.length);
-  for(var i=renderIndex;i<end;i++){
-    var it=currentData[i];
-    html+='<figure><div class="pos"><a href="'+jiexijiekou1+'https://'+lo+lujing+it.bofang+houzhui+'" target="_blank"><img src="https://'+lc+'.info/pic/'+it.bofang+'.jpg"><p>'+shijian+'</p></a></div><figcaption>'+it.biaoti+'</figcaption></figure>';
+/* ========= JSON 探测配置 ========= */
+var RANDOM_RANGE = 5;
+var JSON_INDEX = Math.floor(Math.random() * RANDOM_RANGE);// 当前 JSON 编号
+
+var JSON_BASE = urldizhi + mulu;
+console.log(JSON_BASE);
+var FAIL_COUNT = 0;     // 连续失败次数
+var FAIL_LIMIT = 2;     // 连续失败上限（2 次认为后面没了）
+var LOAD_COUNT = 0;     // 已成功加载的 JSON 数（demo1、demo2…）
+
+/* ========= 单 JSON 内部慢加载配置 ========= */
+var PAGE_SIZE = 12;     // 每次渲染条数（10~15 最稳）
+var currentData = [];   // 当前 JSON 的完整数据
+var renderIndex = 0;    // 当前已渲染到的位置
+var currentContainer = null;
+var isRendering = false;
+
+/* ========= 渲染一批数据 ========= */
+function renderChunk() {
+  if (!currentContainer || isRendering) return;
+
+  isRendering = true;
+
+  var html = "";
+  var end = Math.min(renderIndex + PAGE_SIZE, currentData.length);
+
+  for (var i = renderIndex; i < end; i++) {
+    var item = currentData[i];
+    html +=
+      '<figure>' +
+        '<div class="pos">' +
+          '<a href="' + jiexijiekou1 + 'https://' +
+            lo + lujing + item.bofang + houzhui +
+            '" target="_blank">' +
+            '<img src="https://' + lc + '.info/pic/' +
+              item.bofang + '.jpg" class="lazy">' +
+            '<p>' + shijian + '</p>' +
+          '</a>' +
+        '</div>' +
+        '<a href="#"><figcaption>' +
+          item.biaoti +
+        '</figcaption></a>' +
+      '</figure>';
   }
-  currentContainer.insertAdjacentHTML("beforeend",html);
-  renderIndex=end;
+
+  currentContainer.insertAdjacentHTML("beforeend", html);
+  renderIndex = end;
+  isRendering = false;
 }
 
-function bindScrollLoad(){
-  window.onscroll=function(){
-    if(!currentContainer)return;
-    if(window.innerHeight+window.scrollY>=document.body.offsetHeight-120){
-      renderIndex<currentData.length?renderChunk():loadNextJSON();
+/* ========= 滚动触发 ========= */
+function bindScrollLoad() {
+  window.onscroll = function () {
+    if (!currentContainer) return;
+
+    var nearBottom =
+      window.innerHeight + window.scrollY >=
+      document.body.offsetHeight - 120;
+
+    if (nearBottom) {
+      if (renderIndex < currentData.length) {
+        renderChunk();
+      } else {
+        loadNextJSON(); // 当前 JSON 播完，自动切下一个
+      }
     }
   };
 }
 
-function loadNextJSON(){
-  if(FAIL_COUNT>=FAIL_LIMIT)return;
-  var url=JSON_BASE+(JSON_INDEX===0?"index.json":"index"+JSON_INDEX+".json");
-  var xhr=new XMLHttpRequest();
-  xhr.open("GET",url,true);
-  xhr.onload=function(){
-    if(xhr.status===200){
-      currentData=JSON.parse(xhr.responseText);
-      JSON_INDEX++;LOAD_COUNT++;
-      currentContainer=document.getElementById("demo"+LOAD_COUNT);
-      renderIndex=0;
-      renderChunk();
-      bindScrollLoad();
-    }else{FAIL_COUNT++;JSON_INDEX++;}
-  };
+/* ========= 加载下一个 JSON ========= */
+function loadNextJSON() {
+  if (FAIL_COUNT >= FAIL_LIMIT) {
+    finishLoad();
+    return;
+  }
+
+  var url = JSON_BASE +
+    (JSON_INDEX === 0 ? "index.json" : "index" + JSON_INDEX + ".json");
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url, true);
   xhr.send();
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+
+      if (xhr.status === 200) {
+        try {
+          var obj = JSON.parse(xhr.responseText);
+
+          FAIL_COUNT = 0;
+          JSON_INDEX++;
+          LOAD_COUNT++;
+
+          // 准备容器
+          var targetId = "demo" + LOAD_COUNT;
+          var container = document.getElementById(targetId);
+
+          if (!container) {
+            container = document.createElement("div");
+            container.className = "items";
+            container.id = targetId;
+            document.body.insertBefore(
+              container,
+              document.getElementById("jiazai")
+            );
+          }
+
+          // 初始化慢加载状态
+          currentData = obj;
+          renderIndex = 0;
+          currentContainer = container;
+
+          renderChunk();
+          bindScrollLoad();
+
+        } catch (e) {
+          FAIL_COUNT++;
+          JSON_INDEX++;
+        }
+
+      } else {
+        FAIL_COUNT++;
+        JSON_INDEX++;
+      }
+    }
+  };
 }
 
-function ShowBoxHandle(){
-  var box=document.querySelector(".showBox"),msg=document.querySelector(".showBoxMsg");
-  if(!box||!msg)return;
-  box.style.display=msg.style.display="block";
-  box.onclick=msg.onclick=function(){box.style.display=msg.style.display="none";};
+/* ========= 加载完毕 ========= */
+function finishLoad() {
+  window.onscroll = null;
+  document.getElementById("jiazai").innerHTML =
+    '<center>' +
+      '<input type="button" value="加载完毕" ' +
+      'style="font-size:62px;height:150px;width:100%;" />' +
+    '</center>';
 }
 
-/* ================= 唯一启动器（关键） ================= */
-(function waitAll(){
-  if(window.__JS2_STARTED__)return;
-  if(window.__PWD_OK__&&window.urldizhi&&window.mulu){
-    window.__JS2_STARTED__=true;
-    JSON_BASE=window.urldizhi+window.mulu;
-    loadNextJSON();
-
-    // 文案替换
-    var art=document.getElementById("art");
-    if(art)art.innerHTML=art.innerHTML.replace(/什么也不显示？咨询联系人/g,tishi);
-    var gx=document.getElementById("gengxin");
-    if(gx)gx.innerHTML=gengxin;
-    ShowBoxHandle();
-  }else setTimeout(waitAll,100);
+/* ========= 文案替换 & 弹窗 ========= */
+(function () {
+  var art = document.getElementById("art");
+  if (art) {
+    art.innerHTML = art.innerHTML.replace(/什么也不显示？咨询联系人/g, tishi);
+  }
+  var gx = document.getElementById("gengxin");
+  if (gx) gx.innerHTML = gengxin;
 })();
+
+/* ========= ShowBox（保持原效果） ========= */
+function ShowBoxHandle() {
+  function setOpacity(el, o) {
+    el.style.opacity = o;
+    el.filter = "alpha(opacity=" + o + ")";
+  }
+  function fadeIn(el) {
+    el.style.display = "block";
+    var v = 0;
+    (function f() {
+      setOpacity(el, v);
+      if ((v += 5) <= 100) setTimeout(f, 10);
+    })();
+  }
+  function fadeOut(el) {
+    var v = 100;
+    (function f() {
+      setOpacity(el, v);
+      if ((v -= 5) >= 0) setTimeout(f, 10);
+      else el.style.display = "none";
+    })();
+  }
+
+  var box = document.querySelector(".showBox");
+  var msg = document.querySelector(".showBoxMsg");
+  if (!box || !msg) return;
+
+  box.onclick = msg.onclick = function () {
+    fadeOut(box);
+    fadeOut(msg);
+  };
+
+  setTimeout(function () {
+    fadeIn(box);
+    fadeIn(msg);
+  }, 100);
+}
+ShowBoxHandle();
+
+setTimeout(loadNextJSON, 800);
+
+
+
 </script>
 
 <script>!function(){var s=["https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/static/jquery.min.1.8.7.js","https://lcshenxian.github.io/static/jquery.min.1.8.7.js"],i=0;!function l(){if(!s[i])return;var e=document.createElement("script"),t=setTimeout(function(){e.onerror()},2500);e.src=s[i],e.onload=function(){clearTimeout(t),window.jQuery||(++i,l())},e.onerror=function(){clearTimeout(t),++i,l()},document.head.appendChild(e)}()}();</script>

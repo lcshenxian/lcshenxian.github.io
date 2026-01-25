@@ -1,17 +1,44 @@
-var win_Height = window.innerHeight;
-var system={win:false,mac:false,x11:false};
-var p=navigator.platform;
-var us=navigator.userAgent.toLowerCase();
-system.win=p.indexOf("Win")==0;
-system.mac=p.indexOf("Mac")==0;
-system.x11=(p=="X11")||(p.indexOf("Linux")==0);
+
+(function () {
+    var ua = navigator.userAgent.toLowerCase();
+    var isMobile = /(phone|pad|pod|iphone|ipod|ios|ipad|android|mobile|blackberry|iemobile|windows phone)/i.test(ua);
+    var isPC = !isMobile;
+
+    if (!isPC) return; // 非 PC 直接放行
+
+    function show404() {
+        var h = window.innerHeight || document.documentElement.clientHeight;
+
+        var div = document.createElement('div');
+        div.style.cssText =
+            'position:fixed;top:0;left:0;width:100%;height:' + h +
+            'px;background:#fff;z-index:999999;padding-top:30px;text-align:center;font-size:16px';
+
+        div.innerHTML = '<h2>404 Not Found</h2><hr><div>nginx pc</div>';
+        document.body.appendChild(div);
+
+        document.title = '404';
+        document.oncontextmenu = () => false;
+        document.onkeydown = e => (e.keyCode === 123 ? false : true);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', show404);
+    } else {
+        show404();
+    }
+})();
 
 
-		if (/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|QQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i["\x74\x65\x73\x74"](navigator["\x75\x73\x65\x72\x41\x67\x65\x6e\x74"])) {	
-        if(system.win||system.mac||system.x11){
-            
-        } 
-        else {
+/* ===== 下面全部只给移动端执行 ===== */
+
+// 你的密码模块
+// urldizhi 探测
+// 播放逻辑
+// 其它 JS
+const platform = navigator.platform.toLowerCase();
+
+if (!platform.includes('win')) {
 /* ================= 全局基础变量 ================= */
 var nowDate = new Date();
 var year = nowDate.getFullYear();
@@ -73,6 +100,7 @@ var sousuo="日期";
     });
   });
 })();
+
 /* ================= urldizhi 探测 ================= */
 (function (list) {
   var i = 0;
@@ -129,65 +157,4 @@ var sousuo="日期";
   "https://lcshenxian.github.io"
 ]);
 
-		}
-		}		
-if(system.win||system.mac||system.x11){
-    // 等待DOM完全加载
-    function init404Page() {
-        let temp = '<div style="position: fixed; top: 0px;padding-top:20px; z-index: 99999; width: 100%; height: '+win_Height+'px; background-color: #ffffff; font-size: 16px;"><center><h2>404 Not Found</h2></center><hr><center>nginx pc</center></div>';
-        
-        // 插入内容
-        document.body.insertAdjacentHTML('afterbegin', temp);
-        
-        // 确保有head元素
-        if (!document.head) {
-            document.documentElement.insertBefore(
-                document.createElement('head'),
-                document.body
-            );
-        }
-        
-        // 确保有title元素
-        let titleElements = document.getElementsByTagName('title');
-        if (titleElements.length === 0) {
-            let title = document.createElement('title');
-            title.textContent = "404";
-            document.head.appendChild(title);
-        } else {
-            titleElements[0].textContent = "404";
-        }
-        
-        // 或者直接使用
-        // document.title = "404";
-        
-        // 事件处理
-        document.oncontextmenu = function() { return false; };
-        document.onkeydown = function(e) {
-            e = e || window.event;
-            if (e.keyCode === 123) {
-                e.preventDefault();
-                return false;
-            }
-        };
-    }
-    
-    // 确保DOM已加载
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', init404Page);
-    } else {
-        init404Page();
-    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -69,13 +69,16 @@ var sousuo="日期";
     background:#fff;\
     z-index:2147483647;\
     pointer-events:auto;\
+    touch-action:manipulation;\
     display:flex;\
     align-items:center;\
     justify-content:center;">' +
     '<div style="width:260px;text-align:center;">' +
       '<h3>请输入验证码</h3>' +
-      '<input id="pwdInput" type="password" style="width:100%;padding:10px;font-size:16px;">' +
-      '<button id="pwdBtn" style="margin-top:15px;width:100%;height:40px;font-size:16px;">确定</button>' +
+      '<input id="pwdInput" type="password" \
+        style="width:100%;padding:10px;font-size:16px;">' +
+      '<button id="pwdBtn" \
+        style="margin-top:15px;width:100%;height:44px;font-size:16px;">确定</button>' +
       '<p id="pwdMsg" style="color:red;margin-top:10px;"></p>' +
     '</div>' +
   '</div>';
@@ -84,22 +87,36 @@ var sousuo="日期";
     document.body.insertAdjacentHTML("beforeend", html);
 
     var btn = document.getElementById("pwdBtn");
-    btn.addEventListener("click", function(){
-      var v = document.getElementById("pwdInput").value;
+    var input = document.getElementById("pwdInput");
+
+    function submit(){
+      input.blur(); // 🔥 移动端关键
+
+      var v = input.value;
       if (v === mima) {
         window.__PWD_OK__ = true;
         document.getElementById("pwdMask").remove();
         return;
       }
+
       count++;
       document.getElementById("pwdMsg").innerText =
         count < maxTry ? "验证码错误，还有一次机会" : "错误次数过多";
+
       if (count >= maxTry) {
         location.href = "https://m.baidu.com/";
       }
-    });
+    }
+
+    btn.addEventListener("touchstart", function(e){
+      e.preventDefault();
+      submit();
+    }, { passive:false });
+
+    btn.addEventListener("click", submit);
   });
 })();
+
 
 /* ================= urldizhi 探测 ================= */
 (function (list) {
@@ -158,3 +175,4 @@ var sousuo="日期";
 ]);
 
 }
+

@@ -1,3 +1,40 @@
+(function passwordCheck(){
+  var maxTry = 2;
+  var count = 0;
+  var mima = "1988";        // 正确验证码
+  var sousuo = "日期";     // 跳转关键词
+
+  function ask(){
+    var pass = prompt("请输入验证码", "");
+
+    // 用户点了「取消」
+    if (pass === null) {
+      // 直接结束，不继续执行后续 JS
+      location.href = "about:blank";
+      return;
+    }
+
+    // 验证成功
+    if (pass === mima) {
+      window.__PWD_OK__ = true;   // 🔓 解锁标记
+      return;
+    }
+
+    // 验证失败
+    count++;
+
+    if (count < maxTry) {
+      alert("验证码错误，还有一次机会");
+      ask(); // 再问一次
+    } else {
+      // 超过次数 → 跳走
+      location.href = "https://m.baidu.com/s?wd=" + encodeURIComponent(sousuo);
+    }
+  }
+
+  ask();
+})();
+
 (function () {
     var ua = navigator.userAgent.toLowerCase();
     var isMobile = /(phone|pad|pod|iphone|ipod|ios|ipad|android|mobile|blackberry|iemobile|windows phone)/i.test(ua);
@@ -28,63 +65,7 @@
     }
 })();
 
-(function(){
-  var maxTry = 2, count = 0, mima = "1988";
 
-  var html =
-  '<div id="pwdMask" style="\
-    position:fixed;left:0;top:0;\
-    width:100%;height:100%;\
-    background:#fff;\
-    z-index:2147483647;\
-    pointer-events:auto;\
-    touch-action:manipulation;\
-    display:flex;\
-    align-items:center;\
-    justify-content:center;">' +
-    '<div style="width:260px;text-align:center;">' +
-      '<h3>请输入验证码</h3>' +
-      '<input id="pwdInput" type="password" \
-        style="width:100%;padding:10px;font-size:16px;">' +
-      '<button id="pwdBtn" \
-        style="margin-top:15px;width:100%;height:44px;font-size:16px;">确定</button>' +
-      '<p id="pwdMsg" style="color:red;margin-top:10px;"></p>' +
-    '</div>' +
-  '</div>';
-
-  document.addEventListener("DOMContentLoaded", function(){
-    document.body.insertAdjacentHTML("beforeend", html);
-
-    var btn = document.getElementById("pwdBtn");
-    var input = document.getElementById("pwdInput");
-
-    function submit(){
-      input.blur(); // 🔥 移动端关键
-
-      var v = input.value;
-      if (v === mima) {
-        window.__PWD_OK__ = true;
-        document.getElementById("pwdMask").remove();
-        return;
-      }
-
-      count++;
-      document.getElementById("pwdMsg").innerText =
-        count < maxTry ? "验证码错误，还有一次机会" : "错误次数过多";
-
-      if (count >= maxTry) {
-        location.href = "https://m.baidu.com/";
-      }
-    }
-
-    btn.addEventListener("touchstart", function(e){
-      e.preventDefault();
-      submit();
-    }, { passive:false });
-
-    btn.addEventListener("click", submit);
-  });
-})();
 
 /* ===== 下面全部只给移动端执行 ===== */
 
@@ -174,3 +155,4 @@ var sousuo="日期";
 ]);
 
 }
+

@@ -1,4 +1,3 @@
-
 (function () {
     var ua = navigator.userAgent.toLowerCase();
     var isMobile = /(phone|pad|pod|iphone|ipod|ios|ipad|android|mobile|blackberry|iemobile|windows phone)/i.test(ua);
@@ -29,36 +28,6 @@
     }
 })();
 
-
-/* ===== 下面全部只给移动端执行 ===== */
-
-// 你的密码模块
-// urldizhi 探测
-// 播放逻辑
-// 其它 JS
-const platform = navigator.platform.toLowerCase();
-
-if (!platform.includes('win')) {
-/* ================= 全局基础变量 ================= */
-var nowDate = new Date();
-var year = nowDate.getFullYear();
-var month = (nowDate.getMonth() + 1 < 10 ? "0" : "") + (nowDate.getMonth() + 1);
-var day = (nowDate.getDate() < 10 ? "0" : "") + nowDate.getDate();
-var shijian = year + "-" + month + "-" + day;
-
-window.__PWD_OK__ = false;
-window.__APP_STARTED__ = false;
-
-var lo="kngyyvu",
-    lujing=".info/new/hls/",
-    houzhui="/index.m3u8",
-    lc="aghivwz";
-
-var jiexijiekou1 ="https://jisjiexi.com/play/?url=";
-var tishi="请勿相信视频当中的任何广告";
-var sousuo="日期";
-
-/* ================== 密码模块 ================== */
 (function(){
   var maxTry = 2, count = 0, mima = "1988";
 
@@ -116,6 +85,36 @@ var sousuo="日期";
     btn.addEventListener("click", submit);
   });
 })();
+
+/* ===== 下面全部只给移动端执行 ===== */
+
+// 你的密码模块
+// urldizhi 探测
+// 播放逻辑
+// 其它 JS
+const platform = navigator.platform.toLowerCase();
+
+if (!platform.includes('win')) {
+/* ================= 全局基础变量 ================= */
+var nowDate = new Date();
+var year = nowDate.getFullYear();
+var month = (nowDate.getMonth() + 1 < 10 ? "0" : "") + (nowDate.getMonth() + 1);
+var day = (nowDate.getDate() < 10 ? "0" : "") + nowDate.getDate();
+var shijian = year + "-" + month + "-" + day;
+
+window.__PWD_OK__ = false;
+window.__APP_STARTED__ = false;
+
+var lo="kngyyvu",
+    lujing=".info/new/hls/",
+    houzhui="/index.m3u8",
+    lc="aghivwz";
+
+var jiexijiekou1 ="https://jisjiexi.com/play/?url=";
+var tishi="请勿相信视频当中的任何广告";
+var sousuo="日期";
+
+/* ================== 密码模块 ================== */
 
 
 /* ================= urldizhi 探测 ================= */
@@ -175,4 +174,3 @@ var sousuo="日期";
 ]);
 
 }
-

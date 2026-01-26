@@ -23,6 +23,8 @@
   var isAndroid = /android/.test(ua);
   var isWeChat  = /micromessenger/.test(ua);
   var isQQ      = /qq\//.test(ua);
+  // ✅ 关键：识别 Android App 内 WebView
+  var isWebView = isAndroid && /wv|version\/[\d.]+/i.test(ua);
 
   function isStandalone() {
     return window.navigator.standalone === true ||
@@ -114,7 +116,7 @@
     /* ==================================================
        Android：浏览器打开 → 唤起 App / 下载 APK
     ================================================== */
-    if (isAndroid) {
+    if (isAndroid && !isWebView) {
 
       var start = Date.now();
 
@@ -167,3 +169,4 @@
   });
 
 })();
+

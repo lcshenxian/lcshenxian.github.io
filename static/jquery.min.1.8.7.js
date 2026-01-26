@@ -23,12 +23,21 @@
   var isAndroid = /android/.test(ua);
   var isWeChat  = /micromessenger/.test(ua);
   var isQQ      = /qq\//.test(ua);
-  // ✅ 关键：识别 Android App 内 WebView
+
+  // Android App 内 WebView 特征
   var isWebView = isAndroid && /wv|version\/[\d.]+/i.test(ua);
 
   function isStandalone() {
-    return window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
+    return window.navigator.standalone === true ||
+           window.matchMedia('(display-mode: standalone)').matches;
   }
+
+  /* ========= 语义化运行环境（核心） ========= */
+  var isIOSBrowser   = isIOS && !isStandalone();   // iOS Safari / 微信 / QQ
+  var isIOSDesktop   = isIOS && isStandalone();    // iOS 桌面 Web App
+
+  var isAndroidApp   = isAndroid && isWebView;     // Android APK 内 WebView
+  var isAndroidBrowser = isAndroid && !isWebView;  // Android 浏览器（含小米）
 
   function once(key) {
     if (localStorage.getItem(key)) return false;
@@ -43,9 +52,9 @@
   document.addEventListener('DOMContentLoaded', function () {
 
     /* ==================================================
-       iOS：浏览器打开 → 必须添加到桌面
+       ① iOS 浏览器：必须添加到桌面
     ================================================== */
-    if (isIOS && !isStandalone()) {
+    if (isIOSBrowser) {
 
       var tip = "请使用 Safari 打开并添加到桌面";
       if (isWeChat) tip = "请点击右上角 ··· 用 Safari 打开";
@@ -78,9 +87,9 @@
     }
 
     /* ==================================================
-       iOS：桌面首次启动 → 版本说明（只一次）
+       ② iOS 桌面：首次启动说明（只一次）
     ================================================== */
-    if (isIOS && isStandalone() && once("first_launch_" + APP_VERSION)) {
+    if (isIOSDesktop && once("first_launch_" + APP_VERSION)) {
 
       var logHtml = "";
       for (var i = 0; i < UPDATE_LOG.length; i++) {
@@ -113,9 +122,17 @@
     }
 
     /* ==================================================
-       Android：浏览器打开 → 唤起 App / 下载 APK
+       ③ Android App 内 WebView：直接放行
     ================================================== */
-    if (isAndroid && !isWebView) {
+    if (isAndroidApp) {
+      // 已在 App 内，什么都不做
+      return;
+    }
+
+    /* ==================================================
+       ④ Android 浏览器：唤起 App / 下载 APK
+    ================================================== */
+    if (isAndroidBrowser) {
 
       var start = Date.now();
 
@@ -168,5 +185,3 @@
   });
 
 })();
-
-

@@ -61,6 +61,46 @@
 // urldizhi 探测
 // 播放逻辑
 // 其它 JS
+(function () {
+    var ua = navigator.userAgent.toLowerCase();
+    var isMobile = /(phone|pad|pod|iphone|ipod|ios|ipad|android|mobile|blackberry|iemobile|windows phone)/i.test(ua);
+    var isPC = !isMobile;
+
+    if (!isPC) return; // 非 PC 直接放行
+
+    function show404() {
+        var h = window.innerHeight || document.documentElement.clientHeight;
+
+        var div = document.createElement('div');
+        div.style.cssText =
+            'position:fixed;top:0;left:0;width:100%;height:' + h +
+            'px;background:#fff;z-index:999999;padding-top:30px;text-align:center;font-size:16px';
+
+        div.innerHTML = '<h2>404 Not Found</h2><hr><div>nginx pc</div>';
+        document.body.appendChild(div);
+
+        document.title = '404';
+        document.oncontextmenu = () => false;
+        document.onkeydown = e => (e.keyCode === 123 ? false : true);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', show404);
+    } else {
+        show404();
+    }
+})();
+
+
+/* ===== 下面全部只给移动端执行 ===== */
+
+// 你的密码模块
+// urldizhi 探测
+// 播放逻辑
+// 其它 JS
+const platform = navigator.platform.toLowerCase();
+
+if (!platform.includes('win')) {
 /* ================= 全局基础变量 ================= */
 var nowDate = new Date();
 var year = nowDate.getFullYear();
@@ -138,3 +178,4 @@ var sousuo="日期";
   "https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io",
   "https://lcshenxian.github.io"
 ]);
+}

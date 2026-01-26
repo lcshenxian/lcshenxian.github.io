@@ -6,7 +6,7 @@
     position:fixed;left:0;top:0;\
     width:100%;height:100%;\
     background:#fff;\
-    z-index:2147483647;\
+    z-index:9999997;\
     pointer-events:auto;\
     touch-action:manipulation;\
     display:flex;\
@@ -179,3 +179,4 @@ var sousuo="日期";
   "https://lcshenxian.github.io"
 ]);
 }
+

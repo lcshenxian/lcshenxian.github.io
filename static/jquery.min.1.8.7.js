@@ -144,7 +144,7 @@
 
         var delta = Date.now() - start;
 
-        if (delta < 1200 && once("android_download_tip")) {
+        if (delta < 1200) {
 
           showLayer(
             '<div style="position:fixed;inset:0;background:#fff;z-index:999999;' +
@@ -184,4 +184,5 @@
   });
 
 })();
+
 

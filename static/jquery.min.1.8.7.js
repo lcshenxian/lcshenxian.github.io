@@ -27,8 +27,7 @@
   var isWebView = isAndroid && /wv|version\/[\d.]+/i.test(ua);
 
   function isStandalone() {
-    return window.navigator.standalone === true ||
-           window.matchMedia('(display-mode: standalone)').matches;
+    return window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
   }
 
   function once(key) {
@@ -169,4 +168,5 @@
   });
 
 })();
+
 

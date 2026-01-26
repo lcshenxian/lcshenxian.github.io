@@ -11,7 +11,7 @@
   ];
 
   var ANDROID_SCHEME = "ouerkan://open";
-  var APK_URL = "/app.apk";
+  var APK_URL = "https://github.com/lcshenxian/lcshenxian.github.io/releases/download/v1.0.3/app.apk";
 
   /* ================= UA 判断 ================= */
   var ua = navigator.userAgent.toLowerCase();
@@ -243,4 +243,5 @@
     location.assign(url.pathname);
   }, true);
 })();
+
 

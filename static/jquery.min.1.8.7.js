@@ -62,22 +62,66 @@
   }
 
   function showAndroidDownload() {
-    showLayer(
-      '<div style="position:fixed;inset:0;background:#fff;z-index:999999;' +
-      'display:flex;align-items:center;justify-content:center;' +
-      'font-family:-apple-system;text-align:center;padding:24px;">' +
-        '<div style="max-width:360px">' +
-          '<h2 style="font-size:20px;margin-bottom:12px;">' + APP_NAME + '</h2>' +
-          '<p style="font-size:15px;line-height:1.8;color:#333">' +
-            '检测到未安装 App<br>建议下载使用' +
-          '</p>' +
-          '<a href="' + APK_URL + '" style="' +
-            'display:block;margin-top:14px;padding:12px;' +
-            'background:#000;color:#fff;text-decoration:none;' +
-            'border-radius:12px;font-size:15px;">立即下载 App</a>' +
+  showLayer(
+    '<div style="position:fixed;inset:0;z-index:999999;' +
+    'background:linear-gradient(180deg,#0f0f0f,#1a1a1a);' +
+    'display:flex;align-items:center;justify-content:center;' +
+    'font-family:-apple-system,BlinkMacSystemFont;">' +
+
+      '<div style="width:100%;max-width:380px;padding:28px;color:#fff;">' +
+
+        '<div style="text-align:center;margin-bottom:26px;">' +
+          '<div style="width:72px;height:72px;margin:0 auto 14px;' +
+          'background:#000;border-radius:18px;' +
+          'display:flex;align-items:center;justify-content:center;' +
+          'font-size:28px;font-weight:600;">' +
+            APP_NAME.charAt(0) +
+          '</div>' +
+          '<div style="font-size:22px;font-weight:600;">' + APP_NAME + '</div>' +
+          '<div style="font-size:13px;color:#aaa;margin-top:6px;">' +
+            '更流畅 · 更稳定 · 更省心' +
+          '</div>' +
         '</div>' +
-      '</div>'
-    );
+
+        '<div style="background:#111;border-radius:18px;padding:22px;' +
+        'box-shadow:0 20px 40px rgba(0,0,0,.35);">' +
+
+          '<div style="font-size:16px;line-height:1.8;color:#eee;">' +
+            '推荐下载安装 App<br>' +
+            '获得完整、稳定的使用体验' +
+          '</div>' +
+
+          '<ul style="margin:18px 0 22px;padding:0;list-style:none;' +
+          'font-size:14px;color:#bbb;line-height:1.9;">' +
+            '<li>• 打开速度更快</li>' +
+            '<li>• 无浏览器限制</li>' +
+            '<li>• 使用更稳定</li>' +
+          '</ul>' +
+
+          '<a href="' + APK_URL + '" style="' +
+            'display:block;width:100%;text-align:center;' +
+            'padding:14px 0;border-radius:14px;' +
+            'background:#fff;color:#000;font-size:16px;font-weight:600;' +
+            'text-decoration:none;">' +
+            '下载安装 App' +
+          '</a>' +
+
+          '<a href="' + ANDROID_SCHEME + '" style="' +
+            'display:block;margin-top:14px;text-align:center;' +
+            'font-size:14px;color:#aaa;text-decoration:none;">' +
+            '已安装？点这里直接打开' +
+          '</a>' +
+
+          '<div style="margin-top:16px;text-align:center;' +
+          'font-size:12px;color:#666;">' +
+            '若已安装但未自动打开，请手动点击上方链接' +
+          '</div>' +
+
+        '</div>' +
+
+      '</div>' +
+    '</div>'
+  );
   }
 
   /* ================= iOS 桌面内：封死跳 Safari ================= */
@@ -199,3 +243,4 @@
     location.assign(url.pathname);
   }, true);
 })();
+

@@ -174,3 +174,28 @@
   window.addEventListener('pageshow', run);
 
 })();
+(function () {
+  var ua = navigator.userAgent.toLowerCase();
+  var isIOS = /iphone|ipad|ipod/.test(ua);
+  var isStandalone = window.navigator.standalone === true ||
+                     window.matchMedia('(display-mode: standalone)').matches;
+
+  if (!isIOS || !isStandalone) return;
+
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a');
+    if (!a) return;
+
+    var href = a.getAttribute('href');
+    if (!href) return;
+
+    // 只接管站内页面
+    if (/^https?:\/\//i.test(href)) return;
+
+    e.preventDefault();
+
+    // 用当前路径强制拼接
+    var url = new URL(href, location.href);
+    location.assign(url.pathname);
+  }, true);
+})();

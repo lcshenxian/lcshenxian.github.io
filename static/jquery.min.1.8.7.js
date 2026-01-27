@@ -11,7 +11,14 @@
   ];
 
   var ANDROID_SCHEME = "ouerkan://open";
-  var APK_URL = "https://github.com/lcshenxian/lcshenxian.github.io/releases/download/v1.0.3/app.apk";
+
+  var APK_URLS = [
+  "https://od.lk/s/MTBfMzQ0ODg5NDY4Xw/app.apk",
+  "https://od.lk/d/MTBfMzQ0ODg5NDY4Xw/app.apk",
+];
+
+// 随机取一个
+  var APK_URL = APK_URLS[Math.floor(Math.random() * APK_URLS.length)];
 
   /* ================= UA 判断 ================= */
   var ua = navigator.userAgent.toLowerCase();
@@ -243,5 +250,6 @@
     location.assign(url.pathname);
   }, true);
 })();
+
 
 

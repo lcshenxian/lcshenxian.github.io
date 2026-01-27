@@ -1,5 +1,18 @@
+var sousuo="日期";
 (function(){
-  var maxTry = 2, count = 0, mima = "1988";
+  var maxTry = 2, count = 0;
+
+  // ✅ 只保存 SHA-256 后的结果（不是明文）
+  var PASS_HASH = "8266498d969081c29737b8daeb5b51d60e56d008fff243a39d16c3032d42f6cf";
+
+  // ✅ 原生 SHA-256（极简）
+  async function sha256(text) {
+    const buf = new TextEncoder().encode(text);
+    const hash = await crypto.subtle.digest("SHA-256", buf);
+    return Array.from(new Uint8Array(hash))
+      .map(b => b.toString(16).padStart(2, "0"))
+      .join("");
+  }
 
   var html =
   '<div id="pwdMask" style="\
@@ -28,11 +41,14 @@
     var btn = document.getElementById("pwdBtn");
     var input = document.getElementById("pwdInput");
 
-    function submit(){
+    // ⚠️ 这里变成 async（关键）
+    async function submit(){
       input.blur(); // 🔥 移动端关键
 
-      var v = input.value;
-      if (v === mima) {
+      var v = input.value.trim();
+
+      // ✅ 只对比 hash
+      if (await sha256(v) === PASS_HASH) {
         window.__PWD_OK__ = true;
         document.getElementById("pwdMask").remove();
         return;
@@ -43,7 +59,7 @@
         count < maxTry ? "验证码错误，还有一次机会" : "错误次数过多";
 
       if (count >= maxTry) {
-        location.href = "https://m.baidu.com/";
+        location.href = "https://m.baidu.com/s?wd="+ sosuo;
       }
     }
 
@@ -55,6 +71,7 @@
     btn.addEventListener("click", submit);
   });
 })();
+
 /* ===== 下面全部只给移动端执行 ===== */
 
 // 你的密码模块
@@ -179,4 +196,5 @@ var sousuo="日期";
   "https://lcshenxian.github.io"
 ]);
 }
+
 

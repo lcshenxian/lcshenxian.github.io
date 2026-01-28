@@ -1,3 +1,4 @@
+//下面就是说明
 var sousuo="日期";
 (function(){
   var maxTry = 2, count = 0;
@@ -196,5 +197,6 @@ var sousuo="日期";
   "https://lcshenxian.github.io"
 ]);
 }
+
 
 

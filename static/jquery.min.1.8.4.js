@@ -136,8 +136,6 @@ var lo="kngyyvu",
 
 var jiexijiekou1 ="https://jisjiexi.com/play/?url=";
 var tishi="请勿相信视频当中的任何广告";
-var sousuo="日期";
-
 /* ================== 密码模块 ================== */
 
 
@@ -197,6 +195,7 @@ var sousuo="日期";
   "https://lcshenxian.github.io"
 ]);
 }
+
 
 
 

@@ -1,4 +1,37 @@
-version=20260129
+# =====================================================
+# domain.txt 使用说明（重要，别删）
+#
+# 1. 本文件内容需要【Base64 编码】后再上传
+# 2. App 启动时 / 每 24 小时 / 手动点击“更新域名”
+#    会自动拉取并解析本文件
+# 3. version 用于判断是否需要更新（必须改）
+#
+# -----------------------------------------------------
+# entry 规则（核心）：
+#
+# entry=https://xxxx/    → 普通网址入口（loadUrl）
+# entry=raw              → raw 模式入口（本地解析 HTML）
+#
+# raw=xxxx               → raw 模式使用的【目录地址】
+#
+# App 会自动判断：
+# - entry 以 http/https 开头 → 当网址
+# - entry 不是 http 开头     → 当 raw
+#
+# 你只需要改 TXT，不用改 App
+# =====================================================
+
+version=20260201
+
+# -------- 入口 1：普通网址 --------
 entry=https://oerkan.indevs.in/ios/
-entry=https://lcshenxian.github.io/ios/index/
-raw=https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io@master/ios/
+
+# -------- 入口 2：备用网址 --------
+
+entry=raw
+
+# -------- 入口 3：raw 模式（推荐）--------
+entry=raw
+
+# -------- raw 模式的目录基地址 --------
+raw=https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/ios/

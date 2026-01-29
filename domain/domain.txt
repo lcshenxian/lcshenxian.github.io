@@ -1,0 +1,4 @@
+version=20260129
+entry=https://oerkan.indevs.in/ios/
+entry=https://lcshenxian.github.io/ios/index/
+raw=https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io@master/ios/

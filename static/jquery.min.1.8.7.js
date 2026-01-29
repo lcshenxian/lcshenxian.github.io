@@ -42,6 +42,8 @@
 
   // Android WebView（App 内浏览器）
   var isWebView = isAndroid && /wv|version\/[\d.]+/i.test(ua);
+  // 是否为【自己 App】的 Android WebView（通过 UA 标识）
+  var isMyAndroidApp = isAndroid && ua.indexOf("ouerkannapp") !== -1;
 
   // ================= PWA / 桌面模式判断 =================
   // iOS Safari 添加到主屏幕后，standalone = true
@@ -250,15 +252,19 @@
       return;
     }
 
-    /* ---------- Android App 内 ---------- */
-    // 已在 App 内，不做任何处理
-    if (isAndroidApp) return;
+      /* ---------- Android：只允许【自己 App】 ---------- */
+      // 只有 UA 含自己标识的 App 才允许直接访问
+      if (isMyAndroidApp) {
+        return;
+      }
+      
+      /* ---------- Android：其他所有情况 ---------- */
+      // 微信 / QQ / 浏览器 / 任何 WebView
+      // 一律尝试拉起 App，不成功就下载
+      if (isAndroid) {
+        tryOpenAndroidApp();
+      }
 
-    /* ---------- Android 浏览器 ---------- */
-    // 尝试拉起 App，不成功则引导下载
-    if (isAndroidBrowser) {
-      tryOpenAndroidApp();
-    }
   }
 
   /* ================= 生命周期绑定 ================= */
@@ -295,3 +301,4 @@
     location.assign(url.pathname);
   }, true);
 })();
+

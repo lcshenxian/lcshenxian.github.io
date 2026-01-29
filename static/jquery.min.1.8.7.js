@@ -7,12 +7,12 @@
   var APP_NAME    = "偶尔看吧";
 
   // 当前版本号（用于版本提示、更新说明）
-  var APP_VERSION = "1.0.5";
+  var APP_VERSION = "1.0.6";
 
   // 更新日志（首次进入 / 新版本展示）
   var UPDATE_LOG = [
-    "1.0.4 · 优化启动速度",
-    "1.0.3 · 修复部分机型兼容问题",
+    "1.0.5 · 优化启动速度",
+    "1.0.4 · 修复部分机型兼容问题",
     "1.0.1 · 首次发布"
   ];
 
@@ -252,20 +252,38 @@
       return;
     }
 
-      /* ---------- Android：只允许【自己 App】 ---------- */
-      // 只有 UA 含自己标识的 App 才允许直接访问
-      if (isMyAndroidApp) {
-        return;
-      }
-      
-      /* ---------- Android：其他所有情况 ---------- */
-      // 微信 / QQ / 浏览器 / 任何 WebView
-      // 一律尝试拉起 App，不成功就下载
-      if (isAndroid) {
-        tryOpenAndroidApp();
-      }
+  /* ================= Android ================= */
 
+  // ① Android 自己 App → 直接放行
+  if (isMyAndroidApp) {
+    return;
   }
+
+  // ② Android 微信 / QQ → 只提示「浏览器打开」
+  if (isAndroid && (isWeChat || isQQ)) {
+    showLayer(
+      '<div style="position:fixed;inset:0;background:#fff;z-index:999999;' +
+      'display:flex;align-items:center;justify-content:center;' +
+      'font-family:-apple-system;text-align:center;padding:24px;">' +
+        '<div style="max-width:360px">' +
+          '<h2 style="font-size:20px;margin-bottom:12px;">' + APP_NAME + '</h2>' +
+          '<p style="font-size:15px;color:#333">' +
+            '当前环境无法下载应用<br>请点击右上角 ···<br>选择“在浏览器中打开”' +
+          '</p>' +
+        '</div>' +
+      '</div>'
+    );
+    return;
+  }
+
+  // ③ Android 系统浏览器 → 才允许拉 App / 下载
+  if (isAndroid) {
+    tryOpenAndroidApp();
+    return;
+  }
+
+
+}
 
   /* ================= 生命周期绑定 ================= */
   // pageshow：返回页面 / 冷启动都会触发
@@ -301,4 +319,3 @@
     location.assign(url.pathname);
   }, true);
 })();
-

@@ -35,10 +35,16 @@ entry=raw
 entry=raw
 
 # -------- raw 模式的目录基地址 --------
-raw=https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/ios/
+raw=https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io@master/ios/
 
 app_version=1.0.6
 app_url=https://od.lk/s/MTBfMzQ0ODg5NDY4Xw/app.apk
 app_note=修复已知问题，提升稳定性
 
+# ============ 反馈系统（新增） ============
+# off = 完全关闭反馈
+# on  = 开启反馈
+feedback=on
 
+# 反馈地址（匿名问卷）
+feedback_url=https://v.wjx.cn/vm/rjt61Aq.aspx

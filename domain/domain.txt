@@ -37,6 +37,7 @@ entry=raw
 # -------- raw 模式的目录基地址 --------
 raw=https://cdn.jsdelivr.net/gh/lcshenxian/lcshenxian.github.io/ios/
 
-app_version=1.0.6
+app_version=1.0
 app_url=https://od.lk/s/MTBfMzQ0ODg5NDY4Xw/app.apk
 app_note=修复已知问题，提升稳定性
+
